@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+  <!-- yellow sunburst for the "price" on each special -->
+  <polygon points="50.0,0.0 55.2,30.7 71.0,13.6 64.1,35.9 93.3,25.0 69.3,44.8 92.0,50.0 69.3,55.2 93.3,75.0 64.1,64.1 71.0,86.4 55.2,69.3 50.0,100.0 44.8,69.3 29.0,86.4 35.9,64.1 6.7,75.0 30.7,55.2 8.0,50.0 30.7,44.8 6.7,25.0 35.9,35.9 29.0,13.6 44.8,30.7" fill="#F6C432" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,440 @@
+/* ==========================================================
+   FIX 29: retro promo-poster look ("Time Deal" style)
+   Loaded after shopfront.css, replacing shelves.css.
+   To undo: swap the poster.css <link> back to shelves.css.
+
+   - Warm beige paper with grain, navy + yellow + red
+   - Big retro script headline (Shrikhand) in yellow with a navy outline
+   - Classic serif headings (DM Serif Display), Quicksand for everything else
+   - Red starbursts for prices, red-and-cream checkerboard strips
+   Contrast: navy text is 10:1 on the paper, white on the red is 5.6:1.
+   Red is only used for big shapes, on the lighter cards, or behind white text.
+   ========================================================== */
+
+:root {
+  --paper-beige: #ebdfc4;
+  --card-cream: #f7f0e0;
+  --navy: #1d2a6b;
+  --red: #c8232a;
+  --yellow: #f6c432;
+
+  --ink: var(--navy);
+  --muted: #3f4775;
+  --offwhite: var(--paper-beige);
+  --card: var(--card-cream);
+  --soft-shadow: 0 10px 24px rgba(29, 42, 107, 0.14);
+  --soft-shadow-lift: 0 16px 34px rgba(29, 42, 107, 0.2);
+
+  --font-script: "Shrikhand", "Cooper Black", serif;
+  --font-heading: "DM Serif Display", Georgia, serif;
+  --font-body: "Quicksand", "Avenir Next", system-ui, sans-serif;
+
+  /* red-and-cream checkerboard, used as a strip under the header and over the footer */
+  --checks: repeating-conic-gradient(var(--red) 0 25%, var(--card-cream) 0 50%) 0 0 / 28px 28px;
+}
+
+/* paper grain */
+body {
+  background-color: var(--paper-beige);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.25 0 0 0 0 0.1 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  color: var(--navy);
+}
+
+body.shop-floor {
+  background-color: var(--paper-beige);
+}
+
+/* ---------- headings ---------- */
+
+h1,
+h2,
+.h1,
+.shelf-title,
+.specials-title,
+.nutrition-label h2,
+.receipt-header h2,
+.aisle-intro h1,
+.project-intro h1,
+.about-intro h1,
+.grocer-photo {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  color: var(--navy);
+  letter-spacing: 0;
+}
+
+/* the one big script moment: "Today's Specials" */
+.specials-heading {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(3.2rem, 11vw, 7rem);
+  line-height: 1;
+  color: var(--yellow);
+  /* thick navy outline + offset shadow, like the poster's lettering */
+  -webkit-text-stroke: 9px var(--navy); /* drawn behind the yellow, so about 4px shows */
+  paint-order: stroke fill;
+  text-shadow: 6px 6px 0 var(--navy);
+  transform: rotate(-4deg);
+  margin: 0.4rem 0 1.6rem;
+}
+
+/* small capitals like "FUNDING LIVE IS OPEN!" */
+.shop-sign,
+.aisle-tag,
+.price-tag,
+.label-small {
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--navy);
+}
+
+h3,
+.card-label h3 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  color: var(--navy);
+}
+
+/* ---------- header + footer with checkerboard strips ---------- */
+
+header {
+  background: var(--card-cream);
+  box-shadow: none;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -14px;
+  height: 14px;
+  background: var(--checks);
+}
+
+nav ul li a {
+  color: var(--navy);
+}
+
+nav ul li a:hover,
+nav ul li a:focus-visible {
+  background: var(--yellow);
+  color: var(--navy);
+}
+
+.footer {
+  position: relative;
+  background: var(--card-cream);
+  color: var(--navy);
+  margin-top: 14px;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -14px;
+  height: 14px;
+  background: var(--checks);
+}
+
+.footer-links a,
+.footer h3,
+.footer h4 {
+  color: var(--navy);
+}
+
+/* ---------- home: Today's Specials poster ---------- */
+
+.specials-wall {
+  background: transparent;
+  padding-top: 4.5rem;
+}
+
+.shop-sign {
+  background: var(--navy);
+  color: var(--card-cream);
+}
+
+.specials-intro {
+  color: var(--navy);
+}
+
+/* red starburst next to the headline */
+.specials-wall {
+  position: relative;
+}
+
+.specials-wall::after {
+  content: "Fresh work!";
+  position: absolute;
+  top: 1.4rem;
+  right: 6vw;
+  width: 120px;
+  height: 120px;
+  display: grid;
+  place-items: center;
+  padding: 0 22px;
+  text-align: center;
+  background: url("../images/starburst-red.svg") center / 100% 100% no-repeat;
+  color: #ffffff;
+  font-family: var(--font-script);
+  font-size: 1.05rem;
+  line-height: 1;
+  transform: rotate(12deg);
+}
+
+/* ---------- project cards: cream cards on the poster ---------- */
+
+.plank,
+.shelf-label .barcode {
+  display: none;
+}
+
+.grocery-card,
+.sold-out {
+  background: var(--card-cream);
+  border-radius: 18px;
+  padding: 12px 12px 16px;
+  box-shadow: var(--soft-shadow);
+  text-align: left;
+}
+
+.product-grid > .grocery-card:nth-child(odd) {
+  transform: rotate(-1.2deg);
+}
+
+.product-grid > .grocery-card:nth-child(even) {
+  transform: rotate(1deg);
+}
+
+.grocery-card:hover {
+  transform: rotate(0) translateY(-5px);
+  box-shadow: var(--soft-shadow-lift);
+}
+
+.grocery-card img,
+.grocery-card .coming-soon-img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 12px;
+  filter: none;
+}
+
+.coming-soon-img {
+  background: rgba(29, 42, 107, 0.06);
+  border: 2px dashed rgba(29, 42, 107, 0.3);
+}
+
+.shelf-label {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.shelf-label .price-tag {
+  position: static;
+  display: inline-block;
+  margin: 12px 0 4px;
+  background: var(--yellow);
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.68rem;
+}
+
+.shelf-label h3 {
+  font-size: 1.45rem;
+  margin: 4px 0 2px;
+  text-align: left;
+}
+
+.shelf-label p {
+  display: block;
+  margin: 0 0 6px;
+  color: var(--muted);
+}
+
+.shelf-label .label-small {
+  display: block;
+  font-size: 0.6rem;
+  color: var(--muted);
+}
+
+.shelf-label .card-cta {
+  display: none;
+}
+
+/* badge ("Top 1", "New!") as a small red sticker on the card corner */
+.grocery-card[data-badge]::after {
+  position: absolute;
+  top: -14px;
+  right: -12px;
+  width: 74px;
+  height: 74px;
+  display: grid;
+  place-items: center;
+  background: url("../images/starburst-red.svg") center / 100% 100% no-repeat;
+  color: #ffffff;
+  font-family: var(--font-script);
+  font-size: 0.85rem;
+  transform: rotate(10deg);
+  z-index: 2;
+}
+
+.grocery-card[data-badge="Top 1"]::after { content: "Top 1"; }
+.grocery-card[data-badge="Best!"]::after { content: "Best!"; }
+.grocery-card[data-badge="Hot!"]::after { content: "Hot!"; }
+.grocery-card[data-badge="New!"]::after { content: "New!"; }
+.grocery-card[data-badge="Soon!"]::after { content: "Soon!"; }
+
+.restock-stamp {
+  background: var(--navy);
+  color: var(--card-cream);
+}
+
+/* ---------- aisle signs + pills ---------- */
+
+.shelf-title {
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  border-bottom: 4px solid var(--yellow);
+}
+
+.aisle-tag,
+.shelf-links a,
+body.shop-floor .aisle-tag,
+body.shop-floor .shelf-links a {
+  background: var(--yellow);
+  color: var(--navy);
+}
+
+.shelf-links a:hover {
+  background: var(--navy);
+  color: var(--card-cream);
+}
+
+/* ---------- buttons ---------- */
+
+.hero-button,
+.next-link,
+.order-btn,
+.how-it-works .hero-button,
+.card-cta,
+.footer-cta,
+.back-to-top {
+  background: var(--navy);
+  color: var(--card-cream);
+}
+
+.back-link {
+  color: var(--navy);
+}
+
+/* ---------- Made to Order: prices in red starbursts ---------- */
+
+.price-sticker {
+  background: url("../images/starburst-red.svg") center / 100% 100% no-repeat;
+  color: #ffffff;
+  border-radius: 0;
+  width: 134px;
+  height: 134px;
+  padding: 0 28px;
+  font-family: var(--font-script);
+  font-size: 0.88rem;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.price-sticker small {
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0;
+  display: block;
+}
+
+.package-card h3 {
+  color: var(--navy);
+}
+
+.package-flag {
+  background: var(--yellow);
+  color: var(--navy);
+}
+
+.bundle-card {
+  background: var(--yellow);
+}
+
+.bundle-items li,
+.extras li,
+.tool-tags li {
+  background: var(--yellow);
+}
+
+.skill-label {
+  border-left-color: var(--red);
+}
+
+.nutrition-label h2 {
+  border-bottom-color: var(--red);
+}
+
+.grocer-card {
+  background: var(--card-cream);
+}
+
+.grocer-photo {
+  background: var(--yellow);
+}
+
+/* ---------- phones ---------- */
+
+@media (max-width: 768px) {
+  /* room above the shop sign for the "Fresh work!" sticker */
+  .specials-wall {
+    padding-top: 6.2rem;
+  }
+
+  .specials-wall::after {
+    width: 84px;
+    height: 84px;
+    top: 0.6rem;
+    right: 10px;
+    font-size: 0.72rem;
+    padding: 0 14px;
+  }
+
+  .specials-heading {
+    -webkit-text-stroke: 6px var(--navy);
+    text-shadow: 3px 3px 0 var(--navy);
+  }
+
+  .grocery-card[data-badge]::after {
+    width: 56px;
+    height: 56px;
+    font-size: 0.65rem;
+    top: -10px;
+    right: -6px;
+  }
+
+  .shelf-label h3 {
+    font-size: 1.05rem;
+  }
+
+  .price-sticker {
+    width: 116px;
+    height: 116px;
+    padding: 0 24px;
+    font-size: 0.78rem;
+  }
+}

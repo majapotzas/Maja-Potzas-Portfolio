@@ -1,0 +1,117 @@
+/* ==========================================================
+   FIX 35: final touches from Maja's review
+   - One sans-serif (Quicksand) for all headings - no more serif.
+     Shrikhand stays for the big page titles and the stickers.
+   - The small navy label always sits ABOVE the page title
+   - Today's Specials on desktop: photo, name and sunburst sit close
+     together in the middle (like the reference), not spread to the edges
+   - All sunbursts the same size on phones
+   - Checkered phone menu bar is an exact number of squares tall (no cut-off row)
+   - The area past the bottom of the page matches the footer
+   Loads last on every page.
+   ========================================================== */
+
+:root {
+  --font-heading: var(--font-body); /* Quicksand */
+}
+
+/* overscroll past the bottom of the page shows the footer colour, not a different cream */
+html {
+  background-color: var(--card-cream);
+}
+
+/* ---------- headings: Quicksand Bold instead of the serif ---------- */
+
+h2,
+h3,
+h4,
+.display-font,
+.shelf-title,
+.specials-title,
+.menu-heading,
+.special-name,
+.card-label h3,
+.shelf-label h3,
+.package-card h3,
+.skill-label h3,
+.nutrition-label h2,
+.receipt-header h2,
+.receipt-shop .receipt-shop-name,
+.grocer-photo,
+.footer h3,
+.footer h4 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.special-name {
+  letter-spacing: -0.02em;
+}
+
+/* ---------- the navy label always sits above the title ---------- */
+
+.aisle-tag {
+  display: table; /* its own line, only as wide as the words */
+}
+
+.aisle-intro .aisle-tag {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- Today's Specials: a tight, centred menu on bigger screens ---------- */
+
+@media (min-width: 761px) {
+  .specials-menu {
+    max-width: 760px;
+  }
+
+  .special-row,
+  .specials-menu li:nth-child(even) .special-row {
+    justify-content: center;
+    column-gap: 1.6rem;
+  }
+
+  /* photo | name | sunburst, with the name only as wide as it needs */
+  .special-row {
+    grid-template-columns: 220px auto 140px;
+  }
+
+  .specials-menu li:nth-child(even) .special-row {
+    grid-template-columns: 140px auto 220px;
+  }
+}
+
+/* ---------- all sunbursts the same size on phones ---------- */
+
+@media (max-width: 760px) {
+  .special-burst,
+  .specials-menu li:nth-child(even) .special-burst {
+    font-size: 0.85rem;
+  }
+}
+
+/* ---------- checkered phone menu bar: exactly 4 rows of squares ---------- */
+
+@media (max-width: 600px) {
+  header {
+    height: 56px; /* the checks are 14px squares, so 56px = 4 full rows */
+    padding: 0 16px !important;
+    display: flex;
+    align-items: center;
+    background-position: 0 0;
+  }
+
+  header nav {
+    width: 100%;
+  }
+
+  .menu-toggle {
+    padding: 0.45rem 0.85rem;
+  }
+
+  nav ul#site-menu {
+    top: calc(100% + 8px); /* lines up with the bottom of the 56px bar */
+  }
+}

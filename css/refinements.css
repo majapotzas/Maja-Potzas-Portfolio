@@ -1,0 +1,229 @@
+/* ==========================================================
+   FIX 34: refinements from Maja's review
+   - Small phones: the menu becomes a checkered bar with a menu button
+   - Made to Order: "from 3 000 kr" centred inside each starburst
+   - Today's Specials: just the name + what it is; smaller gap before Meet the grocer
+   - Aisles: no shop-name strip on the cards; "restocking soon" on red-and-cream checks
+   - Mangi case study: boards shown top to bottom with no gaps, like in Figma
+   Loads last on every page.
+   ========================================================== */
+
+/* ---------- menu button (hidden on bigger screens) ---------- */
+
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  /* the whole bar becomes the checkered pattern */
+  header {
+    background: var(--checks);
+    padding: 0.7rem 16px !important;
+  }
+
+  header::after {
+    display: none; /* the separate strip isn't needed - the bar is the pattern */
+  }
+
+  nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--card-cream);
+    color: var(--navy);
+    border: none;
+    border-radius: 3px;
+    padding: 0.55rem 0.9rem;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(29, 42, 107, 0.25);
+  }
+
+  /* three lines that turn into an X when open */
+  .menu-toggle-bars,
+  .menu-toggle-bars::before,
+  .menu-toggle-bars::after {
+    display: block;
+    width: 20px;
+    height: 2.5px;
+    background: var(--navy);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .menu-toggle-bars {
+    position: relative;
+  }
+
+  .menu-toggle-bars::before,
+  .menu-toggle-bars::after {
+    content: "";
+    position: absolute;
+    left: 0;
+  }
+
+  .menu-toggle-bars::before {
+    top: -6px;
+  }
+
+  .menu-toggle-bars::after {
+    top: 6px;
+  }
+
+  .menu-toggle[aria-expanded="true"] .menu-toggle-bars {
+    background: transparent;
+  }
+
+  .menu-toggle[aria-expanded="true"] .menu-toggle-bars::before {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .menu-toggle[aria-expanded="true"] .menu-toggle-bars::after {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* the menu itself drops down as a cream panel */
+  nav ul#site-menu {
+    display: none !important;
+    position: absolute;
+    top: calc(100% + 0.7rem);
+    right: 0;
+    left: 0;
+    flex-direction: column !important;
+    align-items: stretch;
+    gap: 0 !important;
+    background: var(--card-cream);
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 14px 28px rgba(29, 42, 107, 0.22);
+    padding: 0.4rem 0;
+    z-index: 200;
+  }
+
+  nav ul#site-menu.is-open {
+    display: flex !important;
+  }
+
+  nav ul#site-menu li {
+    text-align: left !important;
+  }
+
+  nav ul#site-menu li a {
+    display: block;
+    font-size: 1.05rem !important;
+    padding: 0.85rem 1.2rem !important;
+  }
+}
+
+/* ---------- Made to Order: price centred in the starburst ---------- */
+
+.price-sticker,
+.bundle-card .price-sticker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  padding: 0;
+  line-height: 1;
+  text-align: center;
+}
+
+.price-sticker small,
+.bundle-card .price-sticker small {
+  margin: 0;
+  line-height: 1;
+}
+
+/* ---------- Today's Specials ---------- */
+
+/* the line under each name is now just what it is ("Rebrand") */
+.special-line {
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* less space between "Shop my work" and Meet the grocer */
+.specials-wall {
+  padding-bottom: 1.5rem;
+}
+
+.specials-menu {
+  margin-bottom: 1.8rem;
+}
+
+.specials-wall + .meet-the-grocer,
+.meet-the-grocer {
+  margin-top: 1.5rem;
+}
+
+/* ---------- Aisles ---------- */
+
+body.shop-floor .grocery-card::before {
+  content: none;
+}
+
+/* "restocking soon" on red-and-cream checks instead of grey */
+.coming-soon-img,
+body.shop-floor .grocery-card .coming-soon-img {
+  background: var(--checks);
+  background-size: 34px 34px;
+  border: none;
+  font-size: 0; /* hides the little emoji - the stamp says it all */
+}
+
+.restock-stamp {
+  background: var(--navy);
+  color: var(--card-cream);
+  font-size: 0.95rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  box-shadow: 0 6px 14px rgba(29, 42, 107, 0.3);
+}
+
+/* ---------- Mangi case study ---------- */
+
+/* boards sit right on top of each other, so it reads like one long scroll */
+.gallery--case-study {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--soft-shadow-lift);
+}
+
+.gallery--case-study .gallery-item {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+
+.gallery--case-study .gallery-item:hover {
+  transform: none;
+  box-shadow: none;
+  filter: brightness(1.04);
+}
+
+.gallery--case-study .gallery-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}

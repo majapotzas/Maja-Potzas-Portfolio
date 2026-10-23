@@ -1,0 +1,225 @@
+/* ==========================================================
+   FIX 31: Today's Specials as a café specials menu
+   Each project is one row: round photo on a yellow circle, the name and
+   details in the middle, and a yellow sunburst on the side. Rows swap
+   sides as you go down, like the "Weekend Special" reference.
+   Same colours and fonts as poster.css.
+   ========================================================== */
+
+.specials-menu {
+  list-style: none;
+  max-width: 880px;
+  margin: 0 auto 3rem;
+  padding: 0;
+  display: grid;
+  gap: 3.2rem;
+  text-align: left;
+}
+
+.special-row {
+  display: grid;
+  grid-template-columns: 250px 1fr 150px;
+  align-items: center;
+  gap: 2rem;
+  color: var(--navy);
+  text-decoration: none;
+}
+
+/* every second row swaps the photo to the right, like the menu */
+.specials-menu li:nth-child(even) .special-row {
+  grid-template-columns: 150px 1fr 250px;
+}
+
+.specials-menu li:nth-child(even) .special-photo {
+  order: 3;
+}
+
+.specials-menu li:nth-child(even) .special-burst {
+  order: 1;
+}
+
+.specials-menu li:nth-child(even) .special-text {
+  order: 2;
+  text-align: right;
+}
+
+/* round photo with a yellow circle peeking out behind it */
+.special-photo {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+}
+
+.special-photo::before {
+  content: "";
+  position: absolute;
+  inset: -6% 10% 10% -10%;
+  border-radius: 50%;
+  background: var(--yellow);
+}
+
+.specials-menu li:nth-child(even) .special-photo::before {
+  inset: -6% -10% 10% 10%;
+}
+
+.special-photo img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: var(--soft-shadow);
+  transition: transform 0.25s ease;
+}
+
+.special-row:hover .special-photo img,
+.special-row:focus-visible .special-photo img {
+  transform: scale(1.04) rotate(-3deg);
+}
+
+/* big navy name, like "ALL YOU CAN EAT DIM SUM" */
+.special-name {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+
+/* underlined line, like "Available only at 11.00 - 16.00" */
+.special-line {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  margin-bottom: 0.5rem;
+}
+
+/* red note, like "Buy 1 get 1 for classic coffee only" (red on the lighter cream, 5:1) */
+.special-note {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--red);
+  background: var(--card-cream);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.specials-menu li:nth-child(even) .special-note {
+  margin-left: auto;
+}
+
+/* yellow sunburst with the badge in red, and a small red "Today's" tag */
+.special-burst {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  background: url("../images/starburst-yellow.svg") center / 100% 100% no-repeat;
+  color: var(--red);
+  font-family: var(--font-script);
+  font-size: 1.6rem;
+  line-height: 1;
+  text-align: center;
+  transform: rotate(-6deg);
+}
+
+.special-burst small {
+  position: absolute;
+  top: 34%;
+  left: -6%;
+  background: var(--red);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.7rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 2px;
+}
+
+/* the old card badges aren't used in this layout */
+.special-row::after {
+  content: none;
+}
+
+/* thin bar at the bottom, like "RSVP is highly recommended" */
+.menu-strip {
+  display: inline-block;
+  margin: 2.2rem 0 0;
+  padding: 0.45rem 1.1rem;
+  background: var(--navy);
+  color: var(--card-cream);
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ---------- smaller screens ---------- */
+
+@media (max-width: 760px) {
+  .specials-menu {
+    gap: 2.6rem;
+  }
+
+  /* photo and text side by side, sunburst tucked on the photo's corner */
+  .special-row,
+  .specials-menu li:nth-child(even) .special-row {
+    grid-template-columns: 42% 1fr;
+    gap: 1rem;
+    position: relative;
+  }
+
+  .specials-menu li:nth-child(even) .special-row {
+    grid-template-columns: 1fr 42%; /* photo on the right in even rows */
+  }
+
+  .specials-menu li:nth-child(even) .special-photo {
+    order: 2;
+  }
+
+  .specials-menu li:nth-child(even) .special-text {
+    order: 1;
+  }
+
+  .special-burst,
+  .specials-menu li:nth-child(even) .special-burst {
+    position: absolute;
+    width: 64px;
+    top: -14px;
+    left: calc(42% - 60px); /* sits on the photo's top corner, clear of the text */
+    font-size: 0.8rem;
+    order: 3;
+    z-index: 3; /* in front of the photo */
+  }
+
+  .specials-menu li:nth-child(even) .special-burst {
+    left: auto;
+    right: calc(42% - 60px);
+  }
+
+  .special-burst small {
+    display: none; /* no room for the little "Today's" tag on phones */
+  }
+
+  .special-name {
+    font-size: clamp(1.4rem, 7vw, 2rem);
+  }
+
+  .special-line {
+    font-size: 0.85rem;
+  }
+
+  .special-note {
+    font-size: 0.9rem;
+  }
+
+  .menu-strip {
+    font-size: 0.66rem;
+  }
+}

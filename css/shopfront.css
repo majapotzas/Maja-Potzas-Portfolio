@@ -1,0 +1,539 @@
+/* ==========================================================
+   FIX 27: "shopfront" look - a fun, calm corner shop
+   Loaded LAST on every page. To go back, remove the shopfront.css <link>.
+
+   - Colours: sunny yellow + off-white, dark text (no black borders)
+   - Headings: Noka Black (Adobe Fonts)
+   - Subtitles + labels: Quicksand Bold   - Body text: Quicksand Regular
+   - Soft shadows and rounded corners instead of thick outlines
+   Contrast: the dark text #2b2722 is 12:1 on the yellow and 14:1 on off-white.
+   ========================================================== */
+
+:root {
+  --yellow: #ffd23f;
+  --yellow-soft: #ffe58a;
+  --offwhite: #fbf8f1;
+  --card: #ffffff;
+  --ink: #2b2722;
+  --muted: #5c564d;
+  --soft-shadow: 0 10px 30px rgba(43, 39, 34, 0.1);
+  --soft-shadow-lift: 0 16px 40px rgba(43, 39, 34, 0.16);
+
+  /* older names used by the other stylesheets */
+  --cream: var(--offwhite);
+  --disco-blue: var(--ink);
+  --bright-yellow: var(--yellow);
+  --white: var(--card);
+  --border-stroke: 0 solid transparent;
+  --brutalist-shadow: var(--soft-shadow);
+
+  --font-heading: "noka", "Arial Rounded MT Bold", "Quicksand", system-ui, sans-serif;
+  --font-body: "Quicksand", "Avenir Next", system-ui, sans-serif;
+}
+
+body {
+  background: var(--offwhite);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1.05rem;
+}
+
+* {
+  font-family: inherit;
+}
+
+/* ---------- no black borders or hard shadows anywhere ---------- */
+
+header,
+.footer,
+.footer-left,
+.product-card,
+.grocery-card img,
+.grocery-card .coming-soon-img,
+.card-cta,
+.price-tag,
+.restock-stamp,
+.aisle-tag,
+.shelf-title,
+.shelf-links a,
+.specials-title,
+.nutrition-label,
+.gallery-item,
+.lightbox,
+.lightbox-arrow,
+.lightbox-close,
+.receipt,
+.receipt input,
+.receipt textarea,
+.receipt select,
+.order-btn,
+.footer-cta,
+.next-link,
+.hero-button,
+.how-it-works .hero-button,
+.grocer-card,
+.grocer-photo,
+.package-card,
+.price-sticker,
+.package-flag,
+.bundle-items li,
+.extras li,
+.receipt-steps,
+.skill-label,
+.tool-tags li,
+.check-list,
+.back-to-top,
+.case-video,
+.photo-gallery .gallery-item,
+nav ul li a,
+nav ul li a:hover {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.shelf .product-grid,
+.package-grid,
+.receipt-header,
+.receipt-footer,
+.receipt .check-item,
+.receipt-steps li {
+  border-color: rgba(43, 39, 34, 0.15);
+  box-shadow: none;
+}
+
+.shelf .product-grid,
+.package-grid {
+  border-bottom: 2px solid rgba(43, 39, 34, 0.12);
+}
+
+/* keyboard focus stays clearly visible */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* ---------- fonts ---------- */
+
+h1,
+h2,
+.h1,
+.display-font,
+.specials-heading,
+.shelf-title,
+.specials-title,
+.nutrition-label h2,
+.receipt-header h2,
+.grocer-photo {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+h3,
+h4,
+nav a,
+.card-cta,
+.price-tag,
+.restock-stamp,
+.back-link,
+.aisle-tag,
+.next-link,
+.lightbox-close,
+.lightbox-arrow,
+.lightbox-count,
+.receipt label,
+.check-list legend,
+.order-btn,
+.footer-cta,
+.hero-button,
+.shelf-links a,
+.price-sticker,
+.package-flag,
+.back-to-top,
+.footer-links a,
+.shop-sign,
+.series-meta,
+.tool-tags li,
+strong,
+b,
+dt {
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- header ---------- */
+
+header {
+  background: var(--offwhite);
+  box-shadow: 0 1px 0 rgba(43, 39, 34, 0.08);
+}
+
+nav ul li a {
+  background: transparent;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+  font-size: 0.95rem;
+}
+
+nav ul li a:hover,
+nav ul li a:focus-visible {
+  background: var(--yellow);
+  color: var(--ink);
+  transform: none;
+}
+
+/* ---------- buttons: rounded pills ---------- */
+
+.hero-button,
+.next-link,
+.order-btn,
+.how-it-works .hero-button {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--offwhite);
+  border-radius: 999px;
+  padding: 0.85rem 1.8rem;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-button:hover,
+.next-link:hover,
+.order-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--soft-shadow);
+}
+
+.card-cta,
+.footer-cta,
+.back-to-top {
+  background: var(--ink);
+  color: var(--offwhite);
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+}
+
+.back-link,
+.label-link {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ---------- home: Today's Specials on a yellow wall ---------- */
+
+.specials-wall {
+  max-width: none;
+  margin: 0;
+  padding: 4rem 20px 4.5rem;
+  background: var(--yellow);
+  text-align: center;
+}
+
+.specials-wall .specials-grid {
+  max-width: 1000px;
+  margin: 0 auto 2.5rem;
+}
+
+.shop-sign {
+  display: inline-block;
+  background: var(--offwhite);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.35rem 1rem;
+  font-size: 0.85rem;
+  margin: 0 0 1.2rem;
+}
+
+.specials-heading {
+  font-size: clamp(3rem, 10vw, 6.5rem);
+  line-height: 0.95;
+  margin: 0 0 1rem;
+}
+
+.specials-intro {
+  max-width: 34ch;
+  margin: 0 auto 3rem;
+  font-size: 1.15rem;
+}
+
+.shop-btn {
+  font-size: 1.1rem;
+}
+
+/* ---------- product cards: white, rounded, soft shadow ---------- */
+
+.product-card,
+.package-card {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 14px;
+  box-shadow: var(--soft-shadow);
+  color: var(--ink);
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--soft-shadow-lift);
+}
+
+.grocery-card img,
+.grocery-card .coming-soon-img {
+  border-radius: 14px;
+}
+
+.coming-soon-img {
+  background: var(--yellow-soft);
+}
+
+.card-label h3 {
+  font-size: 1.2rem;
+  margin: 12px 0 2px;
+}
+
+.card-label p {
+  color: var(--muted);
+}
+
+/* little yellow tag in the corner */
+.price-tag {
+  top: 22px;
+  right: 22px;
+  background: var(--yellow);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.75rem;
+  transform: none;
+}
+
+/* on the yellow wall the tags are off-white so they still stand out */
+.specials-wall .price-tag {
+  background: var(--offwhite);
+}
+
+.restock-stamp,
+.package-flag {
+  background: var(--ink);
+  color: var(--offwhite);
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+}
+
+.package-flag {
+  transform: none;
+  align-self: flex-start;
+  padding: 0.25rem 0.8rem;
+}
+
+.sold-out {
+  border: 2px dashed rgba(43, 39, 34, 0.25);
+  box-shadow: none;
+}
+
+/* ---------- aisles and shelves ---------- */
+
+.aisle-tag,
+.shelf-links a {
+  background: var(--yellow);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.35rem 1rem;
+  transform: none;
+}
+
+.shelf-links a:hover {
+  background: var(--ink);
+  color: var(--offwhite);
+}
+
+.shelf-title,
+.specials-title {
+  background: none;
+  padding: 0;
+  transform: none;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.aisle-intro h1,
+.project-intro h1,
+.about-intro h1,
+.package-card h3,
+.skill-label h3 {
+  color: var(--ink);
+}
+
+.aisle-intro h1,
+.project-intro h1,
+.about-intro h1 {
+  font-family: var(--font-heading);
+  font-weight: 900;
+}
+
+/* ---------- Made to Order ---------- */
+
+.price-sticker {
+  background: var(--yellow);
+  color: var(--ink);
+  border-radius: 50%;
+  transform: rotate(8deg);
+}
+
+.bundle-card {
+  background: var(--yellow);
+}
+
+.bundle-card .price-sticker {
+  background: var(--offwhite);
+}
+
+.bundle-items li,
+.extras li {
+  background: var(--yellow-soft);
+  border-radius: 999px;
+}
+
+.receipt-steps,
+.receipt,
+.nutrition-label,
+.skill-label {
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: var(--soft-shadow);
+}
+
+.skill-label {
+  border-left: 10px solid var(--yellow);
+}
+
+.nutrition-label h2 {
+  border-bottom: 4px solid var(--yellow);
+}
+
+.nutrition-label .fact {
+  border-bottom: 1px solid rgba(43, 39, 34, 0.15);
+}
+
+.tool-tags li {
+  background: var(--yellow-soft);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+
+/* ---------- forms ---------- */
+
+.receipt input,
+.receipt textarea,
+.receipt select {
+  background: var(--offwhite);
+  border: 2px solid rgba(43, 39, 34, 0.15);
+  border-radius: 12px;
+}
+
+.check-list {
+  background: var(--offwhite);
+  border-radius: 14px;
+}
+
+.receipt .check-item input {
+  accent-color: var(--ink);
+}
+
+/* ---------- meet the grocer ---------- */
+
+.grocer-card {
+  background: var(--yellow-soft);
+  border-radius: 24px;
+}
+
+.grocer-photo {
+  background: var(--card);
+  color: var(--ink);
+}
+
+/* ---------- project pages ---------- */
+
+.gallery-item {
+  border-radius: 16px;
+  box-shadow: var(--soft-shadow);
+}
+
+.gallery-item:hover {
+  box-shadow: var(--soft-shadow-lift);
+}
+
+.lightbox {
+  border-radius: 12px;
+}
+
+.lightbox::backdrop {
+  background: rgba(43, 39, 34, 0.85);
+}
+
+.lightbox-arrow,
+.lightbox-close {
+  background: var(--yellow);
+  color: var(--ink);
+  border-radius: 50%;
+}
+
+.lightbox-count {
+  background: var(--ink);
+  color: var(--offwhite);
+  border-radius: 999px;
+}
+
+/* ---------- footer ---------- */
+
+.footer {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+.footer-links a {
+  color: var(--ink);
+}
+
+.footer-left {
+  border-right: 2px solid rgba(43, 39, 34, 0.15);
+}
+
+@media (max-width: 1024px) {
+  .footer-left {
+    border-right: none;
+    border-bottom: 2px solid rgba(43, 39, 34, 0.15);
+  }
+}
+
+@media (max-width: 768px) {
+  .specials-wall {
+    padding: 2.5rem 16px 3rem;
+  }
+
+  nav ul li a {
+    font-size: 0.8rem !important;
+    padding: 0.35rem 0.55rem !important;
+  }
+
+  .price-tag {
+    top: 14px;
+    right: 14px;
+    font-size: 0.65rem;
+  }
+
+  .product-card {
+    padding: 8px;
+    border-radius: 14px;
+  }
+}

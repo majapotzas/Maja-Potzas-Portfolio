@@ -1,0 +1,129 @@
+/* ==========================================================
+   FIX 38: Today's Specials as a grid, like a supermarket specials flyer
+   - 3 across on desktop, 1 per row on phones
+   - The lines between the boxes are the red-and-cream checks
+     instead of black rules
+   - Each box keeps the same order: logo, sticker, then the name
+   Loads after hand-in.css and replaces the scattered advert layout.
+   ========================================================== */
+
+/* the grid sits on the checks, and each box is cream, so the checks
+   show through as the lines between and around the boxes */
+.specials-menu {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  padding: 14px;
+  max-width: 1040px;
+  margin: 0 auto 2.4rem;
+  background: var(--checks);
+  border-radius: 6px;
+  box-shadow: var(--soft-shadow);
+}
+
+.specials-menu li,
+.specials-menu li + li,
+.specials-menu li:nth-child(n) {
+  width: auto;
+  margin: 0;
+  padding: 0;
+  border: none;
+  transform: none;
+  background: var(--card-cream);
+}
+
+/* each box: logo with the sticker stuck on, then the name underneath */
+.specials-menu li:nth-child(n) .special-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  padding: 2rem 1.2rem 1.8rem;
+  position: relative;
+  text-align: center;
+}
+
+.specials-menu li:nth-child(n) .special-photo {
+  order: 1;
+  width: min(220px, 80%);
+}
+
+/* the sticker sits on the logo's top-right corner */
+.specials-menu li:nth-child(n) .special-burst {
+  order: 2;
+  position: absolute;
+  top: 1.2rem;
+  right: 1rem;
+  left: auto;
+  width: 110px;
+  margin: 0;
+  font-size: 1.25rem;
+  z-index: 3;
+  transform: rotate(10deg);
+}
+
+.specials-menu li:nth-child(n) .special-text {
+  order: 3;
+  max-width: none;
+  padding: 1.4rem 0 0;
+  text-align: center;
+}
+
+.specials-menu li:nth-child(n) .special-name {
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  text-transform: uppercase;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.specials-menu li:nth-child(n) .special-line {
+  display: block;
+  margin-top: 0.4rem;
+}
+
+.specials-menu li:nth-child(n) .special-row:hover .special-photo img {
+  transform: scale(1.04) rotate(-3deg);
+}
+
+/* "Shop my work" back in the middle, no tilt */
+.shop-btn {
+  transform: none;
+  margin-left: 0;
+}
+
+/* ---------- smaller screens: one per row ---------- */
+
+@media (max-width: 760px) {
+  .specials-menu {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .specials-menu li:nth-child(n) .special-row {
+    padding: 1.6rem 1rem 1.4rem;
+  }
+
+  .specials-menu li:nth-child(n) .special-photo {
+    width: min(200px, 60%);
+  }
+
+  .specials-menu li:nth-child(n) .special-burst {
+    width: 96px;
+    right: calc(50% - 150px);
+    font-size: 1.1rem;
+  }
+}
+
+/* keep every photo a perfect circle, even portrait ones like Mhanya's */
+.specials-menu .special-photo {
+  aspect-ratio: 1;
+  min-height: 0;
+}
+
+.specials-menu .special-photo img {
+  aspect-ratio: 1;
+  height: auto;
+  object-fit: cover;
+}

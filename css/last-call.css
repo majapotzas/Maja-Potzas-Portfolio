@@ -1,0 +1,229 @@
+/* ==========================================================
+   FIX 39+: last-call fixes for the hand-in
+   Each part is labelled with its fix number.
+   Loads last on every page.
+   ========================================================== */
+
+/* ---------- FIX 39: Pyro "Do you know your beans" video ---------- */
+
+/* the video runs off the bottom of its board, so trim it at the edge */
+.gallery--case-study .gallery-item {
+  overflow: hidden;
+}
+
+/* square like the original video; "multiply" makes its white background
+   see-through, so the heading on the board still shows on top */
+.case-video {
+  aspect-ratio: 1;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+}
+
+/* ---------- FIX 40: Today's Specials with thin navy lines ---------- */
+/* no checks and no box around the outside: just a line along the top,
+   one along the bottom, and thin lines between the specials */
+
+.specials-menu {
+  gap: 0;
+  padding: 0;
+  background: none;
+  border-top: 1.5px solid var(--navy);
+  border-bottom: 1.5px solid var(--navy);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.specials-menu li:nth-child(n) {
+  background: transparent;
+}
+
+/* a line between the boxes, side by side */
+.specials-menu li:nth-child(n + 2) {
+  border-left: 1.5px solid var(--navy);
+}
+
+/* phones: one per row, so the lines go between the rows instead */
+@media (max-width: 760px) {
+  .specials-menu li:nth-child(n + 2) {
+    border-left: none;
+    border-top: 1.5px solid var(--navy);
+  }
+}
+
+/* ---------- FIX 42: lightbox arrows only show while hovering ---------- */
+/* on a computer the big arrows fade in when the mouse is over the picture
+   (or when you tab to them with the keyboard). On phones and tablets there
+   is no hover, so they stay as they were (you can also swipe). */
+
+@media (hover: hover) {
+  .lightbox .lightbox-arrow {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .lightbox:hover .lightbox-arrow,
+  .lightbox .lightbox-arrow:focus-visible {
+    opacity: 1;
+  }
+}
+
+/* ---------- FIX 43: the navy label always sits above the title ---------- */
+/* an older rule for The Aisles page made it sit beside the title on iPads */
+
+.aisle-intro .aisle-tag,
+body.shop-floor .aisle-intro .aisle-tag {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- FIX 44: wider page intros and bigger aisle buttons ---------- */
+/* the intro under the page title uses the full width, so on a computer it
+   fits on one line; the text gets smaller as the screen gets smaller */
+
+.aisle-intro {
+  max-width: 1200px;
+}
+
+.aisle-intro .project-desc,
+.aisle-intro .price-note {
+  max-width: none;
+  text-wrap: balance; /* if it does wrap, the two lines are even */
+}
+
+.aisle-intro .project-desc {
+  font-size: clamp(1rem, 0.7rem + 0.8vw, 1.3rem);
+}
+
+/* Branding / Web / Photography / Print / Bundle deal: bigger on computers */
+@media (min-width: 1000px) {
+  .aisle-intro .shelf-links {
+    gap: 0.9rem;
+  }
+
+  .aisle-intro .shelf-links a {
+    font-size: 1.05rem;
+    padding: 0.6rem 1.5rem;
+  }
+}
+
+/* ---------- FIX 46 part 2: hide the faint line along the video's edges ---------- */
+.case-video {
+  clip-path: inset(2px);
+}
+
+/* ---------- FIX 48: Product Facts at the bottom of each project ---------- */
+/* the intro is now one column, so the description gets the whole width */
+
+.project-intro {
+  grid-template-columns: 1fr;
+}
+
+.project-intro .project-desc {
+  max-width: 70ch;
+}
+
+.project-page > .nutrition-label {
+  max-width: 520px;
+  margin: 3rem auto 2.5rem;
+}
+
+/* ---------- FIX 49: social media links in the footer ---------- */
+
+.footer-social {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+
+.footer-social a {
+  display: inline-block;
+  background: var(--navy);
+  color: var(--card-cream);
+  border-radius: 999px;
+  padding: 0.35rem 0.95rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.footer-social a:hover,
+.footer-social a:focus-visible {
+  background: var(--yellow);
+  color: var(--navy);
+}
+
+/* a link with no address yet stays hidden, so there are never dead links */
+.footer-social a[href=""],
+.footer-social li:has(a[href=""]) {
+  display: none;
+}
+
+/* ---------- FIX 50: thicker lines on Today's Specials (3px) ---------- */
+
+.specials-menu {
+  border-top-width: 3px;
+  border-bottom-width: 3px;
+}
+
+.specials-menu li:nth-child(n + 2) {
+  border-left-width: 3px;
+}
+
+@media (max-width: 760px) {
+  .specials-menu li:nth-child(n + 2) {
+    border-top-width: 3px;
+  }
+}
+
+/* ---------- FIX 52: project descriptions in paragraphs + "allergy advice" ---------- */
+
+.project-intro .project-desc + .project-desc {
+  margin-top: 0.9rem;
+}
+
+/* like the bold allergy line on the back of a packet */
+.allergy-advice {
+  margin: 0.8rem 0 0;
+  padding: 0.6rem 0 0;
+  border-top: 2px solid var(--navy);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* ---------- FIX 53: one-line summary under a project title ---------- */
+
+.project-subtitle {
+  margin: -0.4rem 0 1.2rem;
+  color: var(--navy);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 0.9rem + 0.6vw, 1.35rem);
+  line-height: 1.35;
+}
+
+/* ---------- FIX 60: Maja's photo in the "Meet the grocer" circle ---------- */
+
+.grocer-photo--img {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  object-fit: cover;
+  object-position: 50% 30%; /* keeps the face in the middle of the circle */
+}
+
+/* ---------- FIX 61: a little space between the social buttons and the copyright ---------- */
+.footer-social {
+  margin-bottom: 0.9rem;
+}
+
+/* ---------- FIX 70: navy circle behind each special, same side on all three ---------- */
+/* so the red stickers stand out instead of blending into yellow */
+
+.specials-menu li:nth-child(n) .special-photo::before {
+  inset: -6% 10% 10% -10%;
+  background: var(--navy);
+}

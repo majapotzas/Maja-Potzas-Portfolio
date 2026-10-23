@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="The Dancing Pot Shop: an e-commerce website designed and built by Maja Potzas." />
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <title>The Dancing Pot Shop | Maja's Grocery Store</title>
+    <!-- FIX 27: Quicksand (subtitles + body) from Google Fonts. Noka Black (headings) comes from Adobe Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Shrikhand&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/portfolio.css" />
+    <!-- FIX 27: yellow + off-white shopfront look, no black borders -->
+    <link rel="stylesheet" href="css/shopfront.css" />
+    <!-- FIX 29: retro promo-poster look (to go back to the shelves, link css/shelves.css here instead) -->
+    <link rel="stylesheet" href="css/poster.css" />
+    <!-- FIX 32: one consistent system (fonts, titles, spacing) - loads last -->
+    <link rel="stylesheet" href="css/consistency.css" />
+    <!-- FIX 33: polish - home menu, package-style aisle cards, receipt, footer -->
+    <link rel="stylesheet" href="css/polish.css" />
+    <!-- FIX 34: hamburger menu, tidier specials, case study galleries -->
+    <link rel="stylesheet" href="css/refinements.css" />
+    <!-- FIX 35: Quicksand headings, label above titles, tighter specials, phone menu bar -->
+    <link rel="stylesheet" href="css/final-touches.css" />
+    <!-- FIX 36: staggered specials, Mhanya 2-up, Mangi website GIF -->
+    <link rel="stylesheet" href="css/hand-in.css" />
+    <!-- FIX 38: Today's Specials as a checkered grid -->
+    <link rel="stylesheet" href="css/specials-grid.css" />
+    <!-- FIX 39+: last-call fixes for the hand-in (Pyro video, specials lines, lightbox, aisles) -->
+    <link rel="stylesheet" href="css/last-call.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <!-- FIX 34: menu button for small phones (see js/nav.js) -->
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+          <span class="menu-toggle-bars" aria-hidden="true"></span>
+          <span class="menu-toggle-label">Menu</span>
+        </button>
+        <ul id="site-menu">
+          <!-- FIX 27: grocery shop names for the pages -->
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">The Aisles</a></li>
+          <li><a href="services.html">Made to Order</a></li>
+          <li><a href="contact.html">Checkout</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- FIX 18: e-commerce case study -->
+    <main class="project-page">
+      <a href="products.html" class="back-link">← Back to the aisles</a>
+
+      <section class="project-intro">
+        <div>
+          <p class="aisle-tag">Web</p>
+          <h1>The Dancing Pot Shop</h1>
+          <!-- rewrite this in your own words -->
+          <p class="project-desc">
+            A working online shop for The Dancing Pot, my café concept. Products are grouped by craving, every item has its own page, and the grocery list remembers what you've added.
+          </p>
+        </div>
+      </section>
+
+      <section class="case-study">
+        <h2 class="shelf-title">On every screen</h2>
+        <div class="device-row">
+          <figure class="device device--laptop">
+            <div class="device-screen"><img loading="lazy" src="images/projects/dancing-pot-shop/desktop-shop.jpg" alt="The shop page on a laptop: products sorted into hungry, thirsty and sweet treat aisles" /></div>
+          </figure>
+          <figure class="device device--phone">
+            <div class="device-screen"><img loading="lazy" src="images/projects/dancing-pot-shop/phone-product.jpg" alt="A product page on a phone" /></div>
+          </figure>
+        </div>
+        <div class="device-row device-row--flip">
+          <figure class="device device--phone">
+            <div class="device-screen"><img loading="lazy" src="images/projects/dancing-pot-shop/phone-shop.jpg" alt="The shop page on a phone" /></div>
+          </figure>
+          <figure class="device device--laptop">
+            <div class="device-screen"><img loading="lazy" src="images/projects/dancing-pot-shop/desktop-product.jpg" alt="A product page on a laptop with nutrition facts and an add to grocery list button" /></div>
+          </figure>
+        </div>
+
+        <h2 class="shelf-title">Take a scroll</h2>
+        <!-- preload="none" means the 37 MB video only downloads when someone presses play -->
+        <video class="case-video" controls preload="none" poster="images/projects/dancing-pot-shop/desktop-shop.jpg">
+          <source src="images/projects/dancing-pot-shop/scroll-through.mp4" type="video/mp4" />
+        </video>
+
+        <p class="live-link-row">
+          <a href="https://majapotzas.github.io/e-commerce-website/" class="next-link" target="_blank" rel="noopener">Visit the live shop ↗</a>
+        </p>
+      </section>
+
+      <!-- FIX 48: Product Facts moved to the bottom, so the description has the whole width -->
+      <aside class="nutrition-label">
+        <h2>Product Facts</h2>
+        <dl>
+          <div class="fact"><dt>Type</dt><dd>E-commerce website</dd></div>
+          <div class="fact"><dt>Made in</dt><dd>HTML, CSS, JavaScript</dd></div>
+          <div class="fact"><dt>Course</dt><dd>Front-End Development</dd></div>
+        </dl>
+        <p class="ingredients">
+          <strong>Ingredients:</strong> responsive layout, product grid, product pages, add-to-list with a live counter, saved list (localStorage).
+        </p>
+        <!-- FIX 33: barcode, like the back of a real package -->
+        <div class="facts-barcode" aria-hidden="true">
+          <span class="bars"></span>
+          <span class="barcode-number">7 350026 100404 3</span>
+        </div>
+      </aside>
+
+      <nav class="next-item" aria-label="More projects">
+        <a href="products.html" class="back-link">← Back to the aisles</a>
+        <a href="mangi.html" class="next-link">Next item: Mangi →</a>
+      </nav>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-left">
+        <div class="footer-content-wrapper">
+          <div class="newsletter-group">
+            <!-- FIX 63: "cook up a storm" fits the food theme better than "get in the groove" -->
+            <h3 class="display-font">Got a project in mind? Let's cook up a storm</h3>
+            <ul class="groovy-list">
+              <li>Fresh ideas picked daily</li>
+              <!-- FIX 64: matches the services on Made to Order -->
+              <li>Branding, print and web, made to order</li>
+            </ul>
+            <a href="contact.html" class="footer-cta">Place an order →</a>
+          </div>
+
+          <div class="hours-group">
+            <h4 class="display-font">Opening Hours</h4>
+            <p>Always open for new projects</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-right">
+        <!-- FIX 7: social icons hidden until they have real links.
+             To show them: put your profile links in the href="" below, then delete this comment line and the closing one.
+        <p class="display-font">
+          You don't look like a follower, but just in case...
+        </p>
+
+        <div class="footer-icons">
+          <a href=""><img src="images/Instagram-logo.png" alt="Instagram" /></a>
+          <a href=""><img src="images/tiktok-logo-png.webp" alt="TikTok" /></a>
+        </div>
+        -->
+
+        <!-- FIX 15: footer links, including the about page -->
+        <ul class="footer-links">
+          <li><a href="about.html">Meet the grocer</a></li>
+          <li><a href="products.html">The Aisles</a></li>
+          <li><a href="services.html">Made to Order</a></li>
+          <li><a href="contact.html">Checkout</a></li>
+        </ul>
+
+        <!-- FIX 49: social media. Paste your profile link between the "" after href=
+             (e.g. href="https://www.instagram.com/yourname/"). A link only shows once it has an address. -->
+        <ul class="footer-social">
+          <!-- FIX 61: Maja's Instagram and LinkedIn (Facebook stays hidden until it has a link) -->
+          <li><a href="https://www.instagram.com/majapotzasstudio/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/majapotzas" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+
+        <small class="copyright">&copy; 2026 MAJA'S GROCERY STORE · MAJA POTZAS · JÖNKÖPING, SWEDEN</small>
+      </div>
+
+      <a href="#" class="back-to-top">TOP ↑</a>
+    </footer>
+
+    <script src="js/nav.js"></script>
+  </body>
+</html>

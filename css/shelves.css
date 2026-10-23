@@ -1,0 +1,234 @@
+/* ==========================================================
+   FIX 28: products on shop shelves
+   Each project sits on a white shelf with a green top edge, with a
+   shelf-edge price label underneath ("Top 1", name, category, barcode).
+   Loaded after shopfront.css. To undo, remove the shelves.css <link>.
+   ========================================================== */
+
+:root {
+  --shelf-top: #1fae8c; /* green top edge of the shelves (decoration only) */
+  --shelf-face: #ffffff;
+}
+
+/* the aisles page is a yellow shop floor, like the home page wall */
+body.shop-floor {
+  background: var(--yellow);
+}
+
+body.shop-floor .aisle-intro .project-desc {
+  color: var(--ink);
+}
+
+/* ---------- shelf rows ---------- */
+
+.specials-grid,
+.shelf .product-grid {
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  column-gap: 0; /* no gap, so the shelf planks join into one long shelf */
+  row-gap: 3.5rem;
+  border: none;
+  padding-bottom: 0;
+}
+
+.shelf {
+  margin-top: 3rem;
+}
+
+/* ---------- each product ---------- */
+
+.grocery-card,
+.grocery-card:hover,
+.sold-out,
+.sold-out:hover {
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  transform: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+}
+
+/* the project image is the "product" standing on the shelf */
+.grocery-card img,
+.grocery-card .coming-soon-img {
+  width: 68%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 10px;
+  filter: drop-shadow(0 8px 10px rgba(43, 39, 34, 0.22));
+  position: relative;
+  z-index: 1;
+  margin-bottom: -4px; /* sits right on the shelf */
+  transition: transform 0.25s ease;
+}
+
+.grocery-card:hover img,
+.grocery-card:focus-visible img {
+  transform: translateY(-8px) rotate(-2deg); /* picked up off the shelf */
+}
+
+.coming-soon-img {
+  display: grid;
+  place-items: center;
+  font-size: 2.6rem;
+  background: rgba(255, 255, 255, 0.35);
+  border: 3px dashed rgba(43, 39, 34, 0.35);
+  filter: none;
+}
+
+.restock-stamp {
+  top: 34%;
+  z-index: 2;
+}
+
+/* the shelf plank: green top edge + white front */
+.plank {
+  display: block;
+  width: 100%;
+  height: 30px;
+  background: linear-gradient(var(--shelf-top) 0 11px, var(--shelf-face) 11px);
+  box-shadow: 0 7px 6px -4px rgba(43, 39, 34, 0.18); /* shadow only underneath, so planks join without seams */
+  margin: 0 -0.5px; /* overlap by half a pixel so no hairline shows between planks */
+}
+
+/* ---------- shelf-edge price label ---------- */
+
+.shelf-label {
+  width: 78%;
+  margin-top: -10px; /* clipped onto the front of the shelf */
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(43, 39, 34, 0.18);
+  padding: 7px 10px 6px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  column-gap: 8px;
+  row-gap: 1px;
+  text-align: left;
+  color: var(--ink);
+}
+
+/* "Top 1", "New!", "Best!" ... comes from data-badge on each product */
+.grocery-card .shelf-label::before {
+  grid-column: 1;
+  grid-row: 1;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.1;
+}
+
+.grocery-card[data-badge="Top 1"] .shelf-label::before { content: "Top 1"; }
+.grocery-card[data-badge="Best!"] .shelf-label::before { content: "Best!"; }
+.grocery-card[data-badge="Hot!"] .shelf-label::before { content: "Hot!"; }
+.grocery-card[data-badge="New!"] .shelf-label::before { content: "New!"; }
+.grocery-card[data-badge="Soon!"] .shelf-label::before { content: "Soon!"; }
+
+.shelf-label h3 {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  text-align: right;
+  font-size: 1rem;
+  line-height: 1.15;
+}
+
+/* category ("Rebrand") sits under the badge, like the small print on a label */
+.shelf-label .price-tag {
+  position: static;
+  grid-column: 1;
+  grid-row: 2;
+  background: none;
+  padding: 0;
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: 0;
+  transform: none;
+}
+
+.shelf-label .barcode {
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: end;
+  width: 64px;
+  height: 16px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--ink) 0 1px, transparent 1px 3px,
+    var(--ink) 3px 5px, transparent 5px 6px,
+    var(--ink) 6px 7px, transparent 7px 9px
+  );
+}
+
+.shelf-label .label-small {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  font-size: 0.58rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* the description and "View item" button are replaced by the label */
+.shelf-label p,
+.shelf-label .card-cta {
+  display: none;
+}
+
+/* ---------- aisle signs ---------- */
+
+.shelf-title {
+  display: inline-block;
+  background: #ffffff;
+  border-radius: 6px;
+  padding: 0.3rem 1rem;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  box-shadow: 0 4px 12px rgba(43, 39, 34, 0.12);
+  margin-bottom: 2rem;
+}
+
+body.shop-floor .aisle-tag,
+body.shop-floor .shelf-links a {
+  background: #ffffff;
+}
+
+/* ---------- phones ---------- */
+
+@media (max-width: 768px) {
+  .specials-grid,
+  .shelf .product-grid {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2.5rem;
+  }
+
+  .shelf-label {
+    width: 90%;
+    padding: 5px 6px;
+    column-gap: 4px;
+  }
+
+  .grocery-card .shelf-label::before {
+    font-size: 0.85rem;
+  }
+
+  .shelf-label h3 {
+    font-size: 0.8rem;
+  }
+
+  .shelf-label .barcode {
+    width: 40px;
+    height: 12px;
+  }
+
+  .plank {
+    height: 22px;
+    background: linear-gradient(var(--shelf-top) 0 8px, var(--shelf-face) 8px);
+  }
+}

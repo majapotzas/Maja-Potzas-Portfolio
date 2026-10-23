@@ -1,0 +1,1751 @@
+/* Portfolio styles - shared by every page (nav + footer live in style.css) */
+
+:root {
+  --disco-blue: blue;
+  --bright-yellow: yellow;
+  --hot-black: black;
+  --white: white;
+  --border-stroke: 4px solid var(--hot-black);
+  --brutalist-shadow: 8px 8px 0px var(--hot-black);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--disco-blue);
+  color: var(--white);
+}
+
+img {
+  max-width: 100%;
+}
+
+/* ---------- HOME ---------- */
+
+.home-hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  justify-content: center;
+}
+
+.home-hero .hero-content {
+  text-align: center;
+  padding: 9vh 1rem 0;
+}
+
+.home-hero .h1 {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+}
+
+.home-hero .h2 {
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+}
+
+/* FIX 1: today's specials on the home page */
+.todays-specials {
+  max-width: 1000px;
+  margin: 4rem auto 0;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.specials-title {
+  display: inline-block;
+  background-color: var(--bright-yellow);
+  color: var(--hot-black);
+  padding: 5px 15px;
+  border: 3px solid var(--hot-black);
+  transform: rotate(-1deg);
+  margin: 0 0 30px;
+}
+
+.specials-grid {
+  text-align: left;
+  margin-bottom: 2.5rem;
+}
+
+.meet-the-grocer {
+  max-width: 1000px;
+  margin: 4rem auto;
+  padding: 0 20px;
+}
+
+.grocer-card {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  align-items: center;
+  background-color: var(--bright-yellow);
+  color: var(--hot-black);
+  border: var(--border-stroke);
+  border-radius: 15px;
+  box-shadow: var(--brutalist-shadow);
+  padding: 2rem;
+}
+
+.grocer-card h2 {
+  margin-top: 0;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+}
+
+.grocer-photo {
+  aspect-ratio: 1;
+  background: var(--white);
+  border: var(--border-stroke);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: "Bungee", cursive;
+  text-align: center;
+  padding: 1rem;
+  transform: rotate(-3deg);
+}
+
+/* ---------- SHOP (products.html) ---------- */
+
+.aisle-links {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.aisle-links a {
+  font-family: "Bungee", cursive;
+  font-size: 1rem;
+  color: var(--hot-black);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 12px;
+  transition: transform 0.1s;
+}
+
+.aisle-links a:hover {
+  transform: translateX(5px);
+  color: var(--disco-blue);
+}
+
+.products-column {
+  scroll-margin-top: 120px; /* aisle links don't land under the sticky header */
+}
+
+.grocery-card {
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  color: var(--hot-black);
+}
+
+.grocery-card img {
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 3px solid var(--hot-black);
+}
+
+/* keeps the logo + mascot in view when the cover is cropped square */
+.grocery-card img.cover-left {
+  object-position: left center;
+}
+
+.card-label h3 {
+  margin: 12px 0 2px;
+  font-size: 1.3rem;
+}
+
+.card-label p {
+  margin: 0 0 12px;
+}
+
+.card-cta {
+  display: inline-block;
+  background: var(--disco-blue);
+  color: var(--bright-yellow);
+  font-family: "Bungee", cursive;
+  padding: 6px 12px;
+  border: 3px solid var(--hot-black);
+  box-shadow: 3px 3px 0px var(--hot-black);
+}
+
+/* the sticker in the corner of each card */
+.price-tag {
+  position: absolute;
+  top: -12px;
+  right: -10px;
+  z-index: 1;
+  background: var(--bright-yellow);
+  color: var(--hot-black);
+  font-family: "Bungee", cursive;
+  font-size: 0.75rem;
+  padding: 6px 10px;
+  border: 3px solid var(--hot-black);
+  border-radius: 6px;
+  transform: rotate(6deg);
+}
+
+/* unfinished projects */
+.sold-out {
+  cursor: not-allowed;
+  border-style: dashed;
+}
+
+.sold-out:hover {
+  transform: none;
+  box-shadow: 6px 6px 0px var(--hot-black);
+}
+
+.coming-soon-img {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  font-size: 4rem;
+  background: #6b3f1f;
+  border: 3px solid var(--hot-black);
+  border-radius: 8px;
+}
+
+.restock-stamp {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-12deg);
+  background: red;
+  color: var(--white);
+  font-family: "Bungee", cursive;
+  font-size: 1rem;
+  white-space: nowrap;
+  padding: 8px 14px;
+  border: 3px solid var(--hot-black);
+}
+
+/* ---------- PROJECT PAGES ---------- */
+
+.project-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 20px 5rem;
+}
+
+.back-link {
+  display: inline-block;
+  font-family: "Bungee", cursive;
+  color: var(--bright-yellow);
+  text-decoration: none;
+  margin-bottom: 2rem;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.project-intro {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  margin-bottom: 3rem;
+}
+
+.aisle-tag {
+  display: inline-block;
+  background-color: var(--bright-yellow);
+  color: var(--hot-black);
+  font-family: "Bungee", cursive;
+  padding: 5px 15px;
+  border: 3px solid var(--hot-black);
+  transform: rotate(-1deg);
+  margin: 0 0 1rem;
+}
+
+.project-intro h1 {
+  font-size: clamp(2.2rem, 7vw, 4.5rem);
+  line-height: 1;
+  margin: 0 0 1.5rem;
+}
+
+.project-desc {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+/* "nutrition facts" style info box */
+.nutrition-label {
+  background: var(--white);
+  color: var(--hot-black);
+  border: var(--border-stroke);
+  box-shadow: var(--brutalist-shadow);
+  padding: 1.2rem 1.4rem;
+}
+
+.nutrition-label h2 {
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem;
+  border-bottom: 10px solid var(--hot-black);
+  padding-bottom: 0.4rem;
+}
+
+.nutrition-label dl {
+  margin: 0;
+}
+
+.nutrition-label .fact {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 2px solid var(--hot-black);
+  padding: 0.4rem 0;
+}
+
+.nutrition-label dt {
+  font-weight: 700;
+}
+
+.nutrition-label dd {
+  margin: 0;
+  text-align: right;
+}
+
+.ingredients {
+  margin: 0.8rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.project-gallery {
+  display: grid;
+  gap: 24px;
+}
+
+.gallery--landscape {
+  grid-template-columns: 1fr;
+}
+
+.gallery--posters {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+/* brand book: single pages side by side, spreads full width */
+.gallery--book {
+  grid-template-columns: 1fr 1fr;
+}
+
+.gallery--posters .gallery-wide,
+.gallery--book .gallery-wide {
+  grid-column: 1 / -1;
+}
+
+.gallery-item {
+  padding: 0;
+  border: var(--border-stroke);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 6px 6px 0px var(--hot-black);
+  cursor: zoom-in;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gallery-item:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 10px 10px 0px var(--hot-black);
+}
+
+.gallery-item img {
+  display: block;
+  width: 100%;
+}
+
+/* FIX 5: next item link at the bottom of project pages */
+.next-item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+
+.next-item .back-link {
+  margin-bottom: 0;
+}
+
+.next-link {
+  background-color: var(--bright-yellow);
+  color: var(--disco-blue);
+  font-family: "Bungee", cursive;
+  text-decoration: none;
+  padding: 0.8rem 1.5rem;
+  border: var(--border-stroke);
+  box-shadow: 6px 6px 0px var(--hot-black);
+  transition: transform 0.2s ease;
+}
+
+.next-link:hover {
+  transform: translate(-2px, -2px);
+}
+
+/* click-to-enlarge pop up */
+.lightbox {
+  border: var(--border-stroke);
+  padding: 0;
+  max-width: 92vw;
+  max-height: 92vh;
+  background: var(--white);
+  box-shadow: var(--brutalist-shadow);
+}
+
+.lightbox::backdrop {
+  background: rgba(0, 0, 255, 0.85);
+}
+
+.lightbox img {
+  display: block;
+  max-width: 92vw;
+  max-height: 92vh;
+  object-fit: contain;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--bright-yellow);
+  border: 3px solid var(--hot-black);
+  font-family: "Bungee", cursive;
+  font-size: 1.2rem;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+}
+
+/* FIX 6: arrows and counter in the pop up */
+.lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--bright-yellow);
+  border: 3px solid var(--hot-black);
+  box-shadow: 3px 3px 0px var(--hot-black);
+  font-family: "Bungee", cursive;
+  font-size: 1.3rem;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+}
+
+.lightbox-prev {
+  left: 10px;
+}
+
+.lightbox-next {
+  right: 10px;
+}
+
+.lightbox-count {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  background: var(--hot-black);
+  color: var(--bright-yellow);
+  font-family: "Bungee", cursive;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+}
+
+/* FIX 6: smaller arrows on phones so they don't cover the image */
+@media (max-width: 768px) {
+  .lightbox-arrow,
+  .lightbox-close {
+    width: 34px;
+    height: 34px;
+    font-size: 0.9rem;
+    top: auto;
+    bottom: 6px;
+    transform: none;
+  }
+
+  .lightbox-close {
+    top: 6px;
+    right: 6px;
+    bottom: auto;
+  }
+
+  .lightbox-prev {
+    left: 6px;
+  }
+
+  .lightbox-next {
+    right: 6px;
+  }
+
+  .lightbox-count {
+    bottom: 12px;
+  }
+}
+
+/* ---------- CHECKOUT (contact.html) ---------- */
+
+.checkout-wrapper {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 4rem 20px;
+}
+
+.checkout-wrapper h1 {
+  font-size: clamp(2rem, 6vw, 3rem);
+  margin: 0 0 0.5rem;
+}
+
+.receipt {
+  background: var(--white);
+  color: var(--hot-black);
+  border: var(--border-stroke);
+  box-shadow: var(--brutalist-shadow);
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.receipt-header {
+  text-align: center;
+  border-bottom: 3px dashed var(--hot-black);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.receipt-header h2 {
+  margin: 0;
+}
+
+.receipt label {
+  display: block;
+  font-family: "Bungee", cursive;
+  margin-bottom: 0.4rem;
+}
+
+.receipt input,
+.receipt textarea {
+  width: 100%;
+  border: 3px solid var(--hot-black);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.receipt textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.order-btn {
+  width: 100%;
+  background-color: var(--bright-yellow);
+  color: var(--disco-blue);
+  font-family: "Bungee", cursive;
+  font-size: 1.3rem;
+  padding: 15px;
+  border: var(--border-stroke);
+  box-shadow: 5px 5px 0px var(--hot-black);
+  cursor: pointer;
+}
+
+.order-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0px var(--hot-black);
+}
+
+.receipt-footer {
+  text-align: center;
+  border-top: 3px dashed var(--hot-black);
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+}
+
+.receipt-footer a {
+  color: var(--disco-blue);
+  font-weight: 700;
+  word-break: break-all;
+}
+
+/* ---------- FOOTER EXTRAS ---------- */
+
+.footer-cta {
+  display: inline-block;
+  background: var(--disco-blue);
+  color: var(--bright-yellow);
+  font-family: "Bungee", cursive;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 3px solid var(--hot-black);
+  box-shadow: 4px 4px 0px var(--hot-black);
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+/* FIX 2: on smaller screens the aisles box becomes one slim row of buttons */
+@media (max-width: 1023px) {
+  .sidebar {
+    padding: 10px 12px;
+    margin-bottom: 25px;
+    box-shadow: 5px 5px 0px var(--hot-black);
+  }
+
+  .sidebar h3 {
+    display: none;
+  }
+
+  .aisle-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    margin: 0;
+  }
+
+  .aisle-links a {
+    font-size: 0.8rem;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 1023px) {
+  .project-intro {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* FIX 3: two smaller cards side by side on phones, like a shop shelf */
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .grocery-card {
+    padding: 8px;
+    border-width: 3px;
+    border-radius: 12px;
+    box-shadow: 4px 4px 0px var(--hot-black);
+  }
+
+  .card-label h3 {
+    font-size: 0.95rem;
+    margin-top: 8px;
+  }
+
+  .card-label p {
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+  }
+
+  .card-cta {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
+
+  .price-tag {
+    font-size: 0.6rem;
+    padding: 4px 6px;
+    right: -6px;
+  }
+
+  .restock-stamp {
+    font-size: 0.7rem;
+    padding: 5px 8px;
+  }
+
+  .coming-soon-img {
+    font-size: 2.5rem;
+  }
+}
+
+/* FIX 8: tighter project intro on phones so the work shows up sooner */
+@media (max-width: 768px) {
+  .project-page {
+    padding-top: 1.2rem;
+  }
+
+  .project-page > .back-link {
+    margin-bottom: 1.2rem;
+  }
+
+  .project-intro {
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .project-intro h1 {
+    margin-bottom: 0.8rem;
+  }
+
+  .project-desc {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .nutrition-label {
+    padding: 0.8rem 1rem;
+    box-shadow: 5px 5px 0px var(--hot-black);
+  }
+
+  .nutrition-label h2 {
+    font-size: 1.1rem;
+    border-bottom-width: 6px;
+  }
+
+  .nutrition-label .fact {
+    padding: 0.25rem 0;
+    font-size: 0.9rem;
+  }
+
+  .ingredients {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .grocer-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .grocer-photo {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  .receipt {
+    padding: 1.2rem;
+  }
+
+  .gallery--posters {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+}
+
+/* ==========================================================
+   FIX 11: calmer colours - cream background so the work stands
+   out, blue + yellow kept as accents and softened slightly.
+   To undo, delete everything from here to the end of FIX 11.
+   ========================================================== */
+
+:root {
+  --disco-blue: #2340d8; /* deeper cobalt instead of pure blue */
+  --bright-yellow: #ffe45c; /* buttery yellow instead of pure yellow */
+  --cream: #fbf5ea;
+  --ink: #1b1b1b;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--ink);
+}
+
+/* nav + header */
+header {
+  background-color: var(--bright-yellow);
+}
+
+nav ul li a {
+  background-color: var(--bright-yellow);
+  color: var(--disco-blue);
+}
+
+nav ul li a:hover {
+  background-color: var(--disco-blue);
+  color: var(--bright-yellow);
+}
+
+/* home hero text sits on the photo, so it stays yellow */
+.hero-content {
+  color: var(--bright-yellow);
+}
+
+.hero-button {
+  background: var(--bright-yellow);
+  color: var(--disco-blue);
+}
+
+/* shop page */
+.sidebar,
+.products-column h2 {
+  background-color: var(--bright-yellow);
+}
+
+.products-column h2 {
+  color: var(--ink);
+}
+
+/* project pages: links were yellow on blue, now blue on cream */
+.back-link {
+  color: var(--disco-blue);
+}
+
+.project-intro h1 {
+  color: var(--disco-blue);
+}
+
+.lightbox::backdrop {
+  background: rgba(27, 27, 27, 0.88);
+}
+
+/* footer */
+.footer {
+  background-color: var(--bright-yellow);
+}
+
+.back-to-top {
+  background: var(--disco-blue);
+  color: var(--bright-yellow);
+}
+
+/* ========== end of FIX 11 ========== */
+
+/* ==========================================================
+   FIX 12: scroll reveal for "Meet the grocer" (see js/reveal.js)
+   Only hides things when the script is running, so nothing goes
+   missing if JavaScript is off.
+   ========================================================== */
+
+.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.js-reveal .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* the photo circle spins in a little, then settles at its tilt */
+.js-reveal .reveal-pop {
+  transform: scale(0.6) rotate(-20deg);
+}
+
+.js-reveal .reveal-pop.is-visible {
+  transform: rotate(-3deg);
+}
+
+.js-reveal .reveal-delay-1 {
+  transition-delay: 0.25s;
+}
+
+.js-reveal .reveal-delay-2 {
+  transition-delay: 0.5s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal .reveal,
+  .js-reveal .reveal-pop {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .js-reveal .grocer-photo {
+    transform: rotate(-3deg);
+  }
+}
+
+/* ========== end of FIX 12 ========== */
+
+/* FIX 13 (bug): keep the sticky header above the project cards when scrolling */
+header {
+  z-index: 100;
+}
+
+/* ==========================================================
+   FIX 15: five-item menu, footer links, packaging label hero
+   ========================================================== */
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+nav ul li:nth-child(n) {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    justify-content: center;
+    gap: 0.35rem 0.5rem !important;
+  }
+
+  nav ul li a {
+    font-size: 0.66rem !important;
+    padding: 0.35rem 0.45rem !important;
+  }
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem 1.2rem;
+  padding: 0;
+  margin: 0 0 1.2rem;
+}
+
+.footer-links a {
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.footer-links a:hover {
+  border-bottom-color: var(--disco-blue);
+}
+
+/* --- the label --- */
+
+.label-hero {
+  background: var(--disco-blue);
+  padding: 4rem 20px 5rem;
+  display: grid;
+  place-items: center;
+}
+
+.bottle-label {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  background: var(--cream);
+  color: var(--ink);
+  text-align: center;
+  padding: 3rem 2.5rem 2rem;
+  border: var(--border-stroke);
+  /* the inner printed frame, like a label border */
+  outline: 2px solid var(--ink);
+  outline-offset: -14px;
+  box-shadow: 12px 12px 0 var(--hot-black);
+  border-radius: 6px 6px 40px 40px;
+}
+
+.label-top {
+  font-family: "Bungee", cursive;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  margin: 0 0 1rem;
+}
+
+.label-name {
+  font-family: "Bungee", cursive;
+  font-size: clamp(2.6rem, 9vw, 5.2rem);
+  line-height: 0.95;
+  color: var(--disco-blue);
+  margin: 0;
+}
+
+.label-variety {
+  display: inline-block;
+  font-family: "DM Serif Display", Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.15rem, 3vw, 1.6rem);
+  background: var(--bright-yellow);
+  border: 2px solid var(--ink);
+  padding: 0.2rem 1.1rem;
+  margin: 1rem 0 1.4rem;
+  transform: rotate(-1.5deg);
+}
+
+.label-desc {
+  max-width: 46ch;
+  margin: 0 auto 1.8rem;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.label-facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+  margin: 0 0 1.8rem;
+  text-align: left;
+}
+
+.label-facts div {
+  padding: 0.6rem 0.8rem;
+}
+
+.label-facts div + div {
+  border-left: 2px solid var(--ink);
+}
+
+.label-facts dt {
+  font-family: "Bungee", cursive;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+}
+
+.label-facts dd {
+  margin: 0.2rem 0 0;
+  font-size: 0.9rem;
+}
+
+.label-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.2rem 2rem;
+  margin-bottom: 1.8rem;
+}
+
+.label-actions .hero-button {
+  margin: 0;
+}
+
+.label-link {
+  font-family: "Bungee", cursive;
+  color: var(--disco-blue);
+  text-decoration: none;
+}
+
+.label-link:hover {
+  text-decoration: underline;
+}
+
+/* round "seal" sticker on the corner */
+.label-seal {
+  position: absolute;
+  top: -28px;
+  right: -22px;
+  display: grid;
+  place-items: center;
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  background: var(--bright-yellow);
+  border: 3px solid var(--ink);
+  font-family: "Bungee", cursive;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  transform: rotate(12deg);
+  box-shadow: 4px 4px 0 var(--hot-black);
+}
+
+/* decorative barcode */
+.label-barcode {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.label-barcode .bars {
+  width: 150px;
+  height: 46px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--ink) 0 2px, transparent 2px 4px,
+    var(--ink) 4px 5px, transparent 5px 8px,
+    var(--ink) 8px 11px, transparent 11px 12px,
+    var(--ink) 12px 13px, transparent 13px 16px
+  );
+}
+
+.barcode-number {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+}
+
+@media (max-width: 768px) {
+  .label-hero {
+    padding: 2.5rem 16px 3rem;
+  }
+
+  .bottle-label {
+    padding: 4.4rem 1.3rem 1.6rem; /* room for the round sticker */
+    outline-offset: -9px;
+    box-shadow: 7px 7px 0 var(--hot-black);
+  }
+
+  .label-seal {
+    width: 82px;
+    height: 82px;
+    font-size: 0.6rem;
+    top: -22px;
+    right: -8px;
+  }
+
+  .label-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .label-facts div + div {
+    border-left: none;
+    border-top: 2px solid var(--ink);
+  }
+}
+
+/* ========== end of FIX 15 ========== */
+
+/* ==========================================================
+   FIX 17: Photography aisle + series pages
+   ========================================================== */
+
+.aisle-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 20px 5rem;
+}
+
+.aisle-intro h1 {
+  font-size: clamp(2.2rem, 7vw, 4.5rem);
+  line-height: 1;
+  color: var(--disco-blue);
+  margin: 0 0 1rem;
+}
+
+.shelf-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0;
+  margin: 1.5rem 0 0;
+}
+
+.shelf-links a {
+  display: inline-block;
+  background: var(--bright-yellow);
+  color: var(--ink);
+  font-family: "Bungee", cursive;
+  font-size: 0.85rem;
+  text-decoration: none;
+  padding: 0.4rem 0.9rem;
+  border: 3px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--hot-black);
+}
+
+.shelf-links a:hover {
+  background: var(--disco-blue);
+  color: var(--bright-yellow);
+}
+
+.shelf {
+  margin-top: 3.5rem;
+  scroll-margin-top: 110px;
+}
+
+/* the shelf name sits on a "shelf edge" line, like a supermarket shelf strip */
+.shelf-title {
+  display: inline-block;
+  background: var(--bright-yellow);
+  color: var(--ink);
+  padding: 5px 15px;
+  border: 3px solid var(--ink);
+  transform: rotate(-1deg);
+  margin: 0 0 1.6rem;
+}
+
+.shelf .product-grid {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+  padding-bottom: 1.6rem;
+  border-bottom: 10px solid var(--ink);
+}
+
+.series-meta {
+  font-family: "Bungee", cursive;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  margin: 0.6rem 0 2.5rem;
+}
+
+.series-intro {
+  max-width: 760px;
+}
+
+.series-intro h1 {
+  font-size: clamp(2.2rem, 7vw, 4.2rem);
+  line-height: 1;
+  color: var(--disco-blue);
+  margin: 0 0 1rem;
+}
+
+/* photos sit in rows in their original order, each keeping its own shape:
+   --r (width ÷ height) is set on every photo, so wide photos get more room */
+.photo-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.photo-gallery .gallery-item {
+  flex: var(--r) 1 calc(var(--r) * 230px);
+  border-width: 3px;
+  border-radius: 8px;
+  box-shadow: 5px 5px 0 var(--hot-black);
+}
+
+.photo-gallery .gallery-item img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: var(--r);
+  object-fit: cover;
+}
+
+/* stops the last row stretching photos to giant sizes */
+.photo-gallery::after {
+  content: "";
+  flex: 10 1 0;
+}
+
+@media (max-width: 768px) {
+  .shelf .product-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .photo-gallery {
+    gap: 10px;
+  }
+
+  .photo-gallery .gallery-item {
+    flex-basis: calc(var(--r) * 130px);
+    box-shadow: 3px 3px 0 var(--hot-black);
+  }
+}
+
+/* NEEDS-PERMISSION SWITCH
+   Series with people in them have class="needs-permission" on their card.
+   To hide them from the Photography page before going public, remove the
+   two comment markers around the rule below. */
+/*
+.needs-permission {
+  display: none;
+}
+*/
+
+/* ========== end of FIX 17 ========== */
+
+/* ==========================================================
+   FIX 16: Services page
+   ========================================================== */
+
+.price-note {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.package-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 370px));
+  gap: 28px;
+  padding-bottom: 1.6rem;
+  border-bottom: 10px solid var(--ink); /* the shelf edge */
+}
+
+.package-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: var(--border-stroke);
+  border-radius: 15px;
+  box-shadow: 6px 6px 0 var(--hot-black);
+  padding: 1.6rem 1.4rem 1.4rem;
+}
+
+.package-card h3 {
+  font-size: 1.4rem;
+  color: var(--disco-blue);
+  margin: 0.4rem 0 0.8rem;
+  padding-right: 5.5rem; /* room for the price sticker */
+}
+
+.package-ingredients {
+  margin: 0 0 0.3rem;
+  font-size: 0.9rem;
+}
+
+.package-card ul {
+  margin: 0 0 1.4rem;
+  padding-left: 1.2rem;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.package-card .card-cta {
+  align-self: flex-start;
+  text-decoration: none;
+}
+
+/* round yellow price sticker, like a supermarket offer */
+.price-sticker {
+  position: absolute;
+  top: -18px;
+  right: -14px;
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: var(--bright-yellow);
+  border: 3px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--hot-black);
+  font-family: "Bungee", cursive;
+  font-size: 0.95rem;
+  line-height: 1;
+  text-align: center;
+  transform: rotate(10deg);
+}
+
+.price-sticker small {
+  display: block;
+  font-size: 0.65rem;
+  margin-bottom: -18px;
+}
+
+.package-flag {
+  align-self: flex-start;
+  background: red;
+  color: var(--white);
+  font-family: "Bungee", cursive;
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border: 2px solid var(--ink);
+  transform: rotate(-2deg);
+}
+
+.bundle-card {
+  max-width: 640px;
+  background: var(--bright-yellow);
+}
+
+.bundle-card .price-sticker {
+  background: var(--white);
+}
+
+.bundle-items {
+  list-style: none;
+  padding: 0 !important;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.bundle-items li {
+  background: var(--white);
+  border: 2px solid var(--ink);
+  padding: 0.3rem 0.8rem;
+  font-weight: 700;
+}
+
+.bundle-items li + li::before {
+  content: "+ ";
+}
+
+.extras {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.extras li {
+  background: var(--white);
+  border: 3px dashed var(--ink);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+}
+
+.how-it-works {
+  margin-top: 3.5rem;
+  text-align: center;
+}
+
+.receipt-steps {
+  counter-reset: step;
+  list-style: none;
+  max-width: 520px;
+  margin: 0 auto 2rem;
+  padding: 1.6rem 1.6rem 1.2rem;
+  background: var(--white);
+  border: var(--border-stroke);
+  box-shadow: var(--brutalist-shadow);
+  text-align: left;
+  font-family: "Courier New", monospace;
+}
+
+.receipt-steps li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  padding: 0.7rem 0;
+  border-bottom: 2px dashed var(--ink);
+}
+
+.receipt-steps li:last-child {
+  border-bottom: none;
+}
+
+.receipt-steps li::before {
+  content: counter(step, decimal-leading-zero);
+  grid-row: span 2;
+  font-weight: 700;
+}
+
+.receipt-steps strong {
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .package-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* the page body is a grid, and "margin: 0 auto" alone makes these shrink to their
+   content - width: 100% lets them use the full width up to their max-width */
+.aisle-page,
+.project-page {
+  width: 100%;
+}
+
+/* the big yellow button (defined in main-styling.css, which only the home page loads) */
+.how-it-works .hero-button {
+  display: inline-block;
+  background: var(--bright-yellow);
+  color: var(--disco-blue);
+  padding: 0.8rem 1.8rem;
+  text-decoration: none;
+  font-family: "Bungee", cursive;
+  border: 4px solid var(--hot-black);
+  box-shadow: 6px 6px 0 var(--hot-black);
+}
+
+/* ========== end of FIX 16 ========== */
+
+/* ==========================================================
+   FIX 18: new design projects + e-commerce case study
+   ========================================================== */
+
+/* one image on its own, e.g. a flyer or a single artwork */
+.gallery--single {
+  grid-template-columns: minmax(0, 720px);
+  justify-content: center;
+}
+
+.grocery-card img.cover-top {
+  object-position: center top;
+}
+
+.case-study {
+  margin-top: 1rem;
+}
+
+.case-study .shelf-title {
+  margin-top: 2rem;
+}
+
+/* a laptop next to a phone, both drawn with CSS */
+.device-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.device {
+  margin: 0;
+}
+
+.device-screen {
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.device-screen img {
+  display: block;
+  width: 100%;
+}
+
+.device--laptop {
+  flex: 0 1 640px;
+}
+
+.device--laptop .device-screen {
+  border: 14px solid var(--ink);
+  border-bottom-width: 18px;
+  border-radius: 14px 14px 0 0;
+  aspect-ratio: 16 / 10;
+}
+
+.device--laptop .device-screen img {
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* the laptop base */
+.device--laptop::after {
+  content: "";
+  display: block;
+  height: 14px;
+  margin: 0 -6%;
+  background: #3a3a3a;
+  border: 3px solid var(--ink);
+  border-radius: 0 0 14px 14px;
+  box-shadow: 6px 6px 0 var(--hot-black);
+}
+
+.device--phone {
+  flex: 0 0 190px;
+}
+
+.device--phone .device-screen {
+  border: 9px solid var(--ink);
+  border-radius: 28px;
+  aspect-ratio: 9 / 19;
+  box-shadow: 6px 6px 0 var(--hot-black);
+}
+
+.device--phone .device-screen img {
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.case-video {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  border: var(--border-stroke);
+  border-radius: 10px;
+  box-shadow: var(--brutalist-shadow);
+  background: var(--ink);
+}
+
+.live-link-row {
+  text-align: center;
+  margin: 2.5rem 0 0;
+}
+
+@media (max-width: 768px) {
+  .device-row,
+  .device-row--flip {
+    gap: 1rem;
+  }
+
+  .device--phone {
+    flex-basis: 100px;
+  }
+
+  .device--phone .device-screen {
+    border-width: 5px;
+    border-radius: 16px;
+  }
+
+  .device--laptop .device-screen {
+    border-width: 7px;
+    border-bottom-width: 9px;
+  }
+
+  .device--laptop::after {
+    height: 8px;
+  }
+}
+
+/* ========== end of FIX 18 ========== */
+
+/* ==========================================================
+   FIX 19: about page ("Meet the grocer")
+   ========================================================== */
+
+.about-intro {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.about-intro h1 {
+  font-size: clamp(2.4rem, 7vw, 4.5rem);
+  line-height: 1;
+  color: var(--disco-blue);
+  margin: 0 0 1rem;
+}
+
+.about-intro .grocer-photo {
+  color: var(--ink);
+  object-fit: cover;
+  width: 100%;
+}
+
+.about-story {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.about-story .shelf-title {
+  margin-top: 0;
+}
+
+.about-story p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0 0 2rem;
+}
+
+.skill-labels {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 22px;
+}
+
+/* like the price strip on the front edge of a supermarket shelf */
+.skill-label {
+  background: var(--white);
+  border: var(--border-stroke);
+  border-left: 16px solid var(--disco-blue);
+  box-shadow: 5px 5px 0 var(--hot-black);
+  padding: 1rem 1.2rem;
+}
+
+.skill-label h3 {
+  margin: 0 0 0.3rem;
+  color: var(--disco-blue);
+}
+
+.skill-label p {
+  margin: 0 0 0.8rem;
+}
+
+.tool-tags {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tool-tags li {
+  background: var(--bright-yellow);
+  border: 2px solid var(--ink);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 2px 8px;
+}
+
+@media (max-width: 768px) {
+  .about-intro,
+  .about-story {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .about-intro .grocer-photo {
+    max-width: 180px;
+  }
+}
+
+/* ========== end of FIX 19 ========== */
+
+/* ==========================================================
+   FIX 20: enquiry form extras
+   ========================================================== */
+
+.receipt select {
+  width: 100%;
+  border: 3px solid var(--hot-black);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+  background: var(--white);
+}
+
+.receipt label small {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 400;
+  text-transform: none;
+}
+
+.check-list {
+  border: 3px dashed var(--hot-black);
+  border-radius: 8px;
+  padding: 0.8rem 1rem 0.6rem;
+  margin: 0 0 1.2rem;
+}
+
+.check-list legend {
+  font-family: "Bungee", cursive;
+  padding: 0 0.4rem;
+}
+
+/* each package is one line on the receipt: name ...... price */
+.receipt .check-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  margin: 0;
+  padding: 0.35rem 0;
+  border-bottom: 1px dotted var(--hot-black);
+  cursor: pointer;
+}
+
+.receipt .check-item:last-of-type {
+  border-bottom: none;
+}
+
+.receipt .check-item input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--disco-blue);
+  flex-shrink: 0;
+}
+
+.receipt .check-item small {
+  margin-left: auto;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.spam-trap {
+  position: absolute;
+  left: -9999px;
+}
+
+.form-status {
+  font-weight: 700;
+  text-align: center;
+  min-height: 1.2em;
+  margin: 1rem 0 0;
+}
+
+.order-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* ========== end of FIX 20 ========== */

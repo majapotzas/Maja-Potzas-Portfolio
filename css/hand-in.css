@@ -1,0 +1,147 @@
+/* ==========================================================
+   FIX 36: hand-in tweaks
+   - Today's Specials: logo -> sticker (stuck on the logo's edge) -> text,
+     staggered left / right / left on desktop, bigger stickers on iPads
+   - Mhanya posters: two side by side on bigger screens, one on phones
+   - Mangi case study: the scrolling website GIF plays on the laptop screen
+   Loads last on every page.
+   ========================================================== */
+
+/* ---------- Today's Specials ---------- */
+
+.specials-menu {
+  max-width: 900px;
+  gap: 0;
+}
+
+/* no dashed lines between the specials in this layout */
+.specials-menu li,
+.specials-menu li + li {
+  border-top: none;
+  padding: 1.2rem 0;
+}
+
+/* every row reads the same way: logo, sticker, then the name */
+.specials-menu li:nth-child(n) .special-row {
+  display: grid;
+  grid-template-columns: 200px 120px auto;
+  justify-content: start;
+  align-items: center;
+  column-gap: 0;
+  position: relative;
+}
+
+.specials-menu li:nth-child(n) .special-photo {
+  order: 1;
+}
+
+.specials-menu li:nth-child(n) .special-burst {
+  order: 2;
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  width: 120px;
+  margin-left: -46px; /* stuck onto the edge of the logo */
+  z-index: 3;
+  font-size: 1.3rem;
+}
+
+.specials-menu li:nth-child(n) .special-text {
+  order: 3;
+  text-align: left;
+  padding-left: 0.6rem;
+}
+
+/* desktop: staggered like items on a specials board - left, right and lower, left */
+@media (min-width: 900px) {
+  .specials-menu li {
+    width: fit-content;
+  }
+
+  .specials-menu li:nth-child(odd) {
+    margin-right: auto;
+    margin-left: 4%;
+  }
+
+  .specials-menu li:nth-child(even) {
+    margin-left: auto;
+    margin-right: 4%;
+  }
+
+  .specials-menu li + li {
+    margin-top: -40px; /* tucks each one in a little, without the circles touching */
+  }
+
+  /* names wrap onto two lines if long, so each special stays compact */
+  .specials-menu li:nth-child(n) .special-text {
+    max-width: 330px;
+  }
+}
+
+/* iPads: centred rows, stickers stay a good size */
+@media (min-width: 600px) and (max-width: 899px) {
+  .specials-menu li {
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  .specials-menu li:nth-child(n) .special-row {
+    grid-template-columns: 180px 110px auto;
+  }
+
+  .specials-menu li:nth-child(n) .special-burst {
+    width: 110px;
+    font-size: 1.2rem;
+  }
+}
+
+/* phones: smaller, still logo - sticker - name */
+@media (max-width: 599px) {
+  .specials-menu li:nth-child(n) .special-row {
+    grid-template-columns: 120px 76px minmax(0, 1fr);
+  }
+
+  .specials-menu li:nth-child(n) .special-burst {
+    width: 76px;
+    margin-left: -32px;
+    font-size: 0.9rem;
+  }
+
+  .specials-menu li:nth-child(n) .special-text {
+    padding-left: 0.3rem;
+  }
+
+  .special-name {
+    font-size: 1.5rem;
+  }
+}
+
+/* ---------- Mhanya: two posters side by side, one on phones ---------- */
+
+.gallery--posters {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .gallery--posters {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* ---------- Mangi: GIF on the laptop screen ---------- */
+
+.gallery--case-study .gallery-item {
+  position: relative;
+}
+
+.case-gif {
+  position: absolute;
+  height: auto;
+  pointer-events: none; /* clicks still open the board full size */
+}

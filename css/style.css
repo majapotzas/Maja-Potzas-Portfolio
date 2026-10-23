@@ -1,0 +1,352 @@
+* {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  background-color: yellow;
+  padding: 1.5rem 2rem;
+  border-bottom: 10px solid black;
+}
+
+h1,
+h2,
+h3,
+.display-font,
+nav a {
+  font-family: "Bungee", cursive;
+  text-transform: uppercase;
+}
+
+body {
+  margin: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+nav ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/* Align the first item to the left */
+nav ul li:nth-child(1) {
+  text-align: left;
+}
+
+/* Align the middle item to the center */
+nav ul li:nth-child(2) {
+  text-align: center;
+}
+
+/* Align the last item to the right */
+nav ul li:nth-child(3) {
+  text-align: right;
+}
+
+nav a {
+  text-decoration: none;
+  color: yellow;
+  font-weight: 500;
+}
+
+nav ul li a {
+  padding: 0.5rem 1.2rem;
+  background-color: yellow;
+  color: blue;
+
+  font-weight: 600;
+  border: 4px solid transparent;
+  transition: all 0.25s ease;
+}
+
+nav ul li a:hover {
+  background-color: blue;
+  color: yellow;
+  border: 2px solid black;
+  border-radius: 0;
+  box-shadow: 4px 4px 0px black;
+  transform: translateY(-2px);
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  background-color: yellow;
+  color: black;
+  border-top: 8px solid black;
+  padding: 3rem;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Left Column Styling */
+.footer-left {
+  padding-right: 3rem;
+  border-right: 4px solid black; /*  the visible divider */
+}
+
+.footer-content-wrapper {
+  display: flex; /* Makes Newsletter and Hours sit side-by-side */
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.newsletter-group {
+  flex: 2; /* Gives the newsletter more room than the hours */
+}
+
+.hours-group {
+  flex: 1;
+  text-align: right; /* Aligns hours nicely against the divider */
+}
+
+/* Right Side Styling (columns 2 & 3) */
+.footer-right {
+  padding-left: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Keeps social icons centered in their column */
+  justify-content: center;
+}
+
+.footer-nav {
+  margin: 1.5rem 0;
+  display: flex;
+  gap: 20px;
+}
+
+.footer-nav a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  border-bottom: 2px solid transparent;
+}
+
+.footer-nav a:hover {
+  border-bottom: 2px solid blue;
+}
+
+.payment-icons {
+  font-family: "Bungee", cursive;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  opacity: 0.6;
+}
+
+/* THE WIGGLY BACK TO TOP BUTTON with help from Gemini*/
+.back-to-top {
+  position: absolute;
+  right: 20px;
+  top: -25px; /* Sits half-on/half-off the footer */
+  background: blue;
+  color: yellow;
+  padding: 10px 15px;
+  border: 3px solid black;
+  font-family: "Bungee", cursive;
+  text-decoration: none;
+  border-radius: 10px;
+  box-shadow: 4px 4px 0px black;
+}
+
+.back-to-top:hover {
+  animation: wiggle 0.3s infinite;
+}
+
+/* SIMPLE WIGGLE ANIMATION help from Gemini*/
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.follower-text {
+  font-family: "Bungee", cursive;
+  margin-bottom: 20px;
+}
+
+.footer-icons {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.footer-icons img {
+  display: block;
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  transition: transform 0.2s;
+}
+
+.footer-icons img:hover {
+  transform: scale(1.2) rotate(10deg);
+}
+
+.copyright {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+}
+
+/* Subscription Input */
+.subscribe-form {
+  display: flex;
+  border: 4px solid black;
+  border-radius: 10px;
+  background: white;
+  overflow: hidden;
+  font-size: large;
+}
+
+.email-input {
+  border: none;
+  padding: 10px;
+  flex: 1;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.arrow-btn {
+  background: black;
+  color: yellow;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.groovy-list {
+  list-style-type: "★ ";
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+/* "Styling" the pop up msg after you add to cart with help from gemini */
+#cart-toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: yellow;
+  color: blue;
+  padding: 10px 20px;
+  border: 4px solid black;
+  font-family: "Bungee", cursive;
+  font-size: 1rem;
+  box-shadow: 8px 8px 0px black; 
+  z-index: 2000; /* Stays above the footer always */
+  transition: all 0.5s ease;
+}
+
+.toast-hidden {
+  opacity: 0;
+  transform: translateY(100px); /* Hides it below/behind the screen */
+  pointer-events: none;
+}
+
+.toast-visible {
+  opacity: 1;
+  transform: translateY(0); /* Slides it up into view after "add to cart" button is clicked  */
+}
+
+/* --- MOBILE VIEW (Under 768px) --- */
+@media (max-width: 768px) {
+  header {
+    padding: 1rem 0.5rem !important;
+  }
+
+  nav ul {
+    display: flex !important; /* Changed from grid to flex for better side-by-side scaling */
+    flex-direction: row !important;
+    justify-content: center;
+    gap: 2rem !important; /* Even tighter gap for small screens */
+    grid-template-columns: none; /* Disables the 3-column grid from desktop */
+  }
+
+  /* 2. Shrink the font and padding of the actual buttons */
+  nav ul li a {
+    font-size: 0.75rem !important; /* Smaller Bungee font */
+    padding: 0.4rem 0.6rem !important; /* Slimmer buttons */
+    white-space: nowrap !important; /* Prevents "Grocery List" from breaking with help from gemini */
+  }
+
+  /* Product Section: 2-column small cards instead of 1-column big cards */
+  .products-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .footer-content-wrapper {
+    flex-direction: column; /* Newsletter and Hours stack */
+    text-align: center;
+    gap: 20px;
+  }
+
+  .groovy-list {
+    text-align: left;
+  }
+
+  .hours-group {
+    text-align: center; /* Center the hours on mobile */
+  }
+
+  .display-font {
+    font-size: 1.5rem; /* Shrink big headings so they don't overflow */
+  }
+
+  .footer-right {
+    text-align: right;
+  }
+
+  .subscribe-form {
+    flex-direction: column; /* Input and Button stack */
+    text-align: left;
+  }
+
+  .arrow-btn {
+    width: 100%; /* Full width button for easy tapping */
+  }
+}
+
+/* --- TABLET VIEW (Under 1024px) --- */
+@media (max-width: 1024px) {
+  .product-main-row {
+    grid-template-columns: 1fr; /* Stacks image and info on top of each other */
+    gap: 2rem;
+  }
+
+  .footer {
+    padding: 2rem;
+    grid-template-columns: 1fr; /* Footer columns stack vertically */
+  }
+
+  .footer-left {
+    border-right: none;
+    border-bottom: 4px solid black; /* Move divider from side to bottom */
+    padding-bottom: 2rem;
+    padding-right: 0;
+  }
+}

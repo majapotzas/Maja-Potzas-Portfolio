@@ -1,0 +1,407 @@
+/* ==========================================================
+   FIX 33: polish
+   - Home: calmer specials menu (no capitals, no boxes, no strip),
+     "Fresh work!" sticker nudged left on desktop, logo-ready circles
+   - Menu: square hover shape
+   - Aisles: cards look like package labels (barcode, net weight),
+     no red stickers, better sizes on tablets and phones
+   - Product Facts + Checkout receipt get a barcode
+   - Checkout: a white till receipt with torn edges
+   - Footer: tidy columns, no big gaps
+   Loads last on every page. Same three fonts as before.
+   ========================================================== */
+
+/* ---------- menu: square hover, the same in every state ---------- */
+
+nav ul li a,
+nav ul li a:hover,
+nav ul li a:focus-visible {
+  border-radius: 3px;
+}
+
+/* ---------- home: specials menu ---------- */
+
+/* project names in normal capitals, like "Meet the grocer" */
+.special-name {
+  text-transform: none;
+  font-size: clamp(2rem, 4.4vw, 3rem);
+  line-height: 1.05;
+  margin-bottom: 0.45rem;
+}
+
+/* the red note: no box, just text (bold and big enough to meet contrast rules) */
+.special-note {
+  background: none;
+  padding: 0;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.3;
+  color: var(--red);
+}
+
+.special-line {
+  font-size: 1rem;
+}
+
+/* calmer sunbursts: no extra "Today's" tag */
+.special-burst small {
+  display: none;
+}
+
+.special-burst {
+  font-size: 1.45rem;
+}
+
+/* thin dashed line between each special, like a printed menu */
+.specials-menu {
+  gap: 0;
+}
+
+.specials-menu li {
+  padding: 2.4rem 0;
+}
+
+.specials-menu li + li {
+  border-top: 2px dashed rgba(29, 42, 107, 0.2);
+}
+
+/* logos: give an image class="logo" and it sits whole inside the circle
+   instead of being cropped, e.g. <img class="logo" src="images/projects/mangi/logo.png" ...> */
+.special-photo img.logo {
+  object-fit: contain;
+  padding: 16%;
+  background: var(--card-cream);
+}
+
+/* "Fresh work!" sticker a little further left on wide screens */
+@media (min-width: 900px) {
+  .specials-wall::after {
+    right: max(14vw, calc(50% - 400px));
+  }
+}
+
+/* ---------- aisles: cards as package labels ---------- */
+
+/* no red stickers here - they live on Today's Specials */
+body.shop-floor .grocery-card[data-badge]::after {
+  content: none;
+}
+
+body.shop-floor .grocery-card,
+body.shop-floor .sold-out {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 0;
+  overflow: hidden;
+  transform: none;
+  box-shadow: var(--soft-shadow);
+}
+
+/* straight, not tilted like the poster cards (beats the nth-child tilt in poster.css) */
+body.shop-floor .product-grid > .grocery-card:nth-child(n) {
+  transform: none;
+}
+
+body.shop-floor .product-grid > .grocery-card:nth-child(n):hover,
+body.shop-floor .grocery-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--soft-shadow-lift);
+}
+
+/* brand line across the top, like the top of a packet */
+body.shop-floor .grocery-card::before {
+  content: "Maja's Grocery Store";
+  display: block;
+  width: 100%;
+  background: var(--navy);
+  color: var(--card-cream);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.45rem 0;
+}
+
+body.shop-floor .grocery-card img,
+body.shop-floor .grocery-card .coming-soon-img {
+  width: calc(100% - 28px);
+  margin: 14px 14px 0;
+  border-radius: 8px;
+}
+
+body.shop-floor .shelf-label {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0 0.8rem;
+  padding: 0.9rem 14px 1rem;
+  margin-top: 14px;
+  border-top: 2px dashed rgba(29, 42, 107, 0.2);
+  text-align: left;
+}
+
+body.shop-floor .shelf-label .price-tag {
+  grid-column: 1;
+  margin: 0 0 0.35rem;
+  justify-self: start;
+}
+
+/* "Net wt." line on the right, like packet small print */
+body.shop-floor .shelf-label::after {
+  content: "Net wt. 1 project";
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+body.shop-floor .shelf-label h3,
+body.shop-floor .shelf-label p {
+  grid-column: 1 / -1;
+}
+
+body.shop-floor .shelf-label h3 {
+  font-size: 1.45rem;
+  margin: 0.1rem 0 0.15rem;
+}
+
+body.shop-floor .shelf-label p {
+  margin: 0 0 0.8rem;
+}
+
+body.shop-floor .shelf-label .label-small {
+  grid-column: 1;
+  align-self: end;
+}
+
+body.shop-floor .shelf-label .barcode {
+  display: block;
+  grid-column: 2;
+  align-self: end;
+  width: 70px;
+  height: 22px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--navy) 0 1px, transparent 1px 3px,
+    var(--navy) 3px 5px, transparent 5px 6px,
+    var(--navy) 6px 7px, transparent 7px 9px
+  );
+}
+
+body.shop-floor .restock-stamp {
+  top: 42%;
+}
+
+/* sizes: 3 across on laptops, 2 on tablets, 1 big card on phones */
+body.shop-floor .shelf .product-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+@media (max-width: 900px) {
+  body.shop-floor .shelf .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+  }
+}
+
+@media (max-width: 560px) {
+  body.shop-floor .shelf .product-grid {
+    grid-template-columns: minmax(0, 360px);
+    justify-content: center;
+  }
+}
+
+/* ---------- barcodes on Product Facts and the receipt ---------- */
+
+.facts-barcode {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  margin-top: 1rem;
+}
+
+.facts-barcode .bars {
+  display: block;
+  width: 150px;
+  height: 42px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--navy) 0 2px, transparent 2px 4px,
+    var(--navy) 4px 5px, transparent 5px 8px,
+    var(--navy) 8px 11px, transparent 11px 12px,
+    var(--navy) 12px 13px, transparent 13px 16px
+  );
+}
+
+.facts-barcode .barcode-number {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  color: var(--navy);
+}
+
+/* ---------- checkout: a white till receipt ---------- */
+
+.receipt {
+  position: relative;
+  background: #ffffff;
+  border-radius: 0;
+  box-shadow: 0 14px 30px rgba(29, 42, 107, 0.14);
+  margin-top: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+/* torn zig-zag edges at the top and bottom */
+.receipt::before,
+.receipt::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background:
+    linear-gradient(135deg, transparent 50%, #ffffff 50%) 0 0 / 16px 12px repeat-x,
+    linear-gradient(225deg, transparent 50%, #ffffff 50%) 0 0 / 16px 12px repeat-x;
+}
+
+.receipt::before {
+  top: -12px;
+}
+
+.receipt::after {
+  bottom: -12px;
+  transform: rotate(180deg);
+}
+
+.receipt-shop {
+  text-align: center;
+  border-bottom: 2px dashed rgba(29, 42, 107, 0.25);
+  padding-bottom: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.receipt-shop p {
+  margin: 0.1rem 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.receipt-shop .receipt-shop-name {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--navy);
+  margin-bottom: 0.3rem;
+}
+
+.receipt-header {
+  border-bottom: none;
+  margin-bottom: 0.6rem;
+}
+
+.receipt input,
+.receipt textarea,
+.receipt select,
+.check-list {
+  background: #ffffff;
+  border: 2px solid rgba(29, 42, 107, 0.18);
+}
+
+.check-list {
+  border-style: dashed;
+}
+
+.receipt-footer {
+  text-align: center;
+}
+
+.receipt-barcode {
+  align-items: center;
+}
+
+/* ---------- footer: tidy columns ---------- */
+
+.footer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+  padding: 3rem max(20px, calc(50% - 520px)) 2.5rem;
+  text-align: left;
+}
+
+.footer-left,
+.footer-right {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer .footer-content-wrapper {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2.5rem;
+  text-align: left;
+}
+
+.footer .hours-group {
+  text-align: left;
+}
+
+.footer h3,
+.footer h4 {
+  margin: 0 0 0.7rem;
+}
+
+.footer .groovy-list {
+  margin: 0 0 1.2rem;
+  padding-left: 1.1rem;
+  text-align: left;
+}
+
+.footer .groovy-list li {
+  margin: 0.25rem 0;
+}
+
+.footer .hours-group p {
+  margin: 0;
+}
+
+.footer .footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.footer .footer-links {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin: 0 0 1.4rem;
+}
+
+@media (max-width: 900px) {
+  .footer {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2.5rem 20px 2rem;
+  }
+
+  .footer .footer-content-wrapper {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.8rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .footer .footer-content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+}

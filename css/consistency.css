@@ -1,0 +1,306 @@
+/* ==========================================================
+   FIX 32: one consistent system across every page
+   Loaded LAST on every page. It only tidies up - no new look.
+
+   Fonts (only these three, everywhere):
+   - Shrikhand          -> the big title at the top of each page + starbursts
+   - DM Serif Display   -> section headings, project names, card names
+   - Quicksand          -> everything else (400 for text, 700 for labels/buttons)
+
+   Every page now opens like the home page: navy pill label,
+   big yellow script title with a navy outline, then the intro.
+   ========================================================== */
+
+/* ---------- 1. fonts: remove the stray ones ---------- */
+
+.copyright,
+.receipt label small,
+.receipt-steps,
+.receipt-steps *,
+.receipt .check-item,
+.receipt .check-item *,
+.hero-button,
+.how-it-works .hero-button,
+.groovy-list,
+.payment-icons,
+input,
+select,
+textarea,
+button {
+  font-family: var(--font-body);
+}
+
+/* headings never use fake bold (the fonts only come in one weight) */
+h1,
+h2,
+h3,
+h4,
+.display-font,
+.shelf-title,
+.specials-title,
+.special-name,
+.price-sticker,
+.special-burst,
+.grocery-card[data-badge]::after {
+  font-weight: 400;
+}
+
+h2,
+h3,
+h4,
+.display-font {
+  font-family: var(--font-heading);
+}
+
+/* labels, menu and buttons: Quicksand Bold */
+nav ul li a,
+nav a,
+.aisle-tag,
+.shop-sign,
+.card-cta,
+.next-link,
+.back-link,
+.hero-button,
+.order-btn,
+.footer-cta,
+.back-to-top,
+.footer-links a,
+.receipt label,
+.check-list legend,
+.price-tag,
+.package-flag,
+dt,
+strong {
+  font-family: var(--font-body);
+  font-weight: 700;
+}
+
+/* ---------- 2. every page title matches "Today's Specials" ---------- */
+
+/* "main h1:not(...)" is more specific than the older page-title rules, so this wins */
+main h1:not(.specials-heading),
+main .specials-heading {
+  font-family: var(--font-script);
+  font-weight: 400;
+  color: var(--yellow);
+  -webkit-text-stroke: 8px var(--navy); /* drawn behind the yellow, ~4px shows */
+  paint-order: stroke fill;
+  text-shadow: 5px 5px 0 var(--navy);
+  line-height: 1.08;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+main h1:not(.specials-heading) {
+  display: inline-block;
+  font-size: clamp(2.5rem, 7.5vw, 4.6rem);
+  transform: rotate(-2deg);
+  margin: 0.3rem 0 1.3rem;
+}
+
+/* the small label above each title: navy pill, like the home page sign */
+.aisle-tag,
+.shop-sign,
+body.shop-floor .aisle-tag {
+  display: inline-block;
+  background: var(--navy);
+  color: var(--card-cream);
+  border-radius: 999px;
+  padding: 0.35rem 1rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transform: none;
+  margin: 0 0 0.8rem;
+}
+
+/* page intros sit in the middle, like the home page */
+.aisle-intro,
+.checkout-wrapper > h1,
+.checkout-wrapper > p:first-of-type {
+  text-align: center;
+}
+
+.aisle-intro {
+  max-width: 760px;
+  margin: 0 auto 1rem;
+}
+
+.aisle-intro .project-desc,
+.aisle-intro .price-note {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 54ch;
+}
+
+.aisle-intro .shelf-links {
+  justify-content: center;
+}
+
+main.checkout-wrapper > h1:not(.specials-heading) {
+  display: block;
+  width: fit-content;
+  margin: 0.3rem auto 1rem;
+}
+
+/* ---------- 3. section headings: one size, one style ---------- */
+
+.shelf-title,
+.specials-title,
+.menu-heading,
+.about-story .shelf-title,
+.how-it-works .shelf-title,
+.case-study .shelf-title,
+.grocer-card h2 {
+  display: table; /* only as wide as the words, so the underline fits */
+  font-family: var(--font-heading);
+  font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+  line-height: 1.1;
+  color: var(--navy);
+  background: none;
+  box-shadow: none;
+  transform: none;
+  text-transform: none;
+  padding: 0 0 0.35rem;
+  margin: 0 0 1.4rem;
+  border: none;
+  border-bottom: 4px solid var(--yellow);
+}
+
+.how-it-works .shelf-title {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* even space between sections on every page */
+.shelf,
+.how-it-works,
+.case-study,
+.about-story,
+.meet-the-grocer {
+  margin-top: 3.5rem;
+}
+
+/* ---------- 4. same page width and padding everywhere ---------- */
+
+.aisle-page,
+.project-page {
+  max-width: 1040px;
+  padding: 2.5rem 20px 4.5rem;
+}
+
+.checkout-wrapper {
+  padding: 2.5rem 20px 4.5rem;
+}
+
+.project-page > .back-link {
+  display: inline-block;
+  margin-bottom: 1.2rem;
+}
+
+/* ---------- 5. Made to Order fixes ---------- */
+
+/* Full Launch had a blank square instead of its starburst */
+.bundle-card .price-sticker {
+  background: url("../images/starburst-red.svg") center / 100% 100% no-repeat;
+  color: #ffffff;
+}
+
+.bundle-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0.8rem 0 1.4rem;
+}
+
+.bundle-items li {
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: var(--card-cream);
+  font-weight: 700;
+}
+
+.extras li {
+  font-weight: 700;
+}
+
+.receipt-steps {
+  font-size: 1rem;
+}
+
+.receipt-steps strong {
+  text-transform: none;
+}
+
+.how-it-works {
+  text-align: center;
+}
+
+.how-it-works .receipt-steps {
+  text-align: left;
+}
+
+/* ---------- 6. "Back" and "Next item" links ---------- */
+
+.next-item {
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 2px dashed rgba(29, 42, 107, 0.25);
+}
+
+.next-link {
+  font-size: 1rem;
+  padding: 0.8rem 1.4rem;
+}
+
+/* ---------- 7. footer in the same fonts ---------- */
+
+.footer h3,
+.footer h4 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.15;
+  text-transform: none;
+  color: var(--navy);
+}
+
+.footer p,
+.footer li {
+  font-family: var(--font-body);
+}
+
+.copyright {
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--navy);
+}
+
+/* ---------- phones ---------- */
+
+@media (max-width: 768px) {
+  main h1:not(.specials-heading),
+  .specials-heading {
+    -webkit-text-stroke: 6px var(--navy);
+    text-shadow: 3px 3px 0 var(--navy);
+  }
+
+  .next-item {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .next-link {
+    text-align: center;
+  }
+
+  .aisle-page,
+  .project-page,
+  .checkout-wrapper {
+    padding-top: 1.8rem;
+  }
+}

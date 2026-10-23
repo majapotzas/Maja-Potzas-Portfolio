@@ -1,0 +1,128 @@
+:root {
+  --disco-blue: blue;
+  --bright-yellow: yellow;
+  --hot-black: black;
+  --white: white;
+  --border-stroke: 4px solid var(--hot-black);
+  --brutalist-shadow: 8px 8px 0px var(--hot-black);
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* overflow: hidden; */
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-content {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 9vh;
+
+  z-index: 2;
+  color: yellow;
+}
+
+.h1,
+.h2 {
+  margin: 0;
+}
+
+.h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  line-height: 1.1;
+  font-family: "Bungee", cursive;
+  text-align: center;
+}
+
+.h2 {
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  font-weight: normal;
+  line-height: 1.3;
+  font-family: "Bungee", cursive;
+}
+
+.hero-button {
+  display: inline-block;
+  margin-top: 0.5rem;
+  background: yellow;
+
+  color: blue;
+  padding: 0.8rem 1.8rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: "Bungee", cursive;
+  border: 4px solid black;
+  border-radius: 0;
+  box-shadow: 6px 6px 0px black;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.hero-button:hover {
+  transform: translateY(-2px);
+  /* opacity: 0.9; */
+}
+
+.hero-zone {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+
+  transition: transform 0.3s ease;
+}
+
+.hero-zone:hover {
+  background: blue;
+  transform: scale(1.03);
+}
+
+.hero-zone .zone-btn {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.3s ease;
+
+  background: yellow;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 9pt;
+  font-family: "Bungee", cursive;
+  color: blue;
+  font-weight: 800;
+  border: 2px solid black;
+  box-shadow: 4px 4px 0px black;
+  border-radius: 0px;
+  cursor: pointer;
+  text-decoration: none;
+  pointer-events: auto;
+}
+
+.hero-zone:hover .zone-btn {
+  opacity: 1;
+  transform: translateY(0);
+}

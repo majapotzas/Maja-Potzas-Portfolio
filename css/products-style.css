@@ -1,0 +1,141 @@
+* {
+  box-sizing: border-box; 
+  /* ensure padding and borders don't break my layout widths*/
+} 
+
+body {
+  background-color: blue;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: white;
+  margin: 0;
+}
+
+.products-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.sidebar {
+  background-color: yellow;
+  color: black;
+  border: 4px solid black;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 8px 8px 0px black;
+}
+
+.search-bar {
+  width: 100%; /* Fills the container */
+  box-sizing: border-box; /* forces borders/padding inside the width */
+  border: 4px solid black;
+  border-radius: 12px;
+  padding: 15px;
+  font-family: inherit;
+  outline: none;
+}
+
+.category-menu {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.category-menu li {
+  font-family: "Bungee", cursive;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.category-menu li:hover {
+  transform: translateX(5px);
+  color: blue;
+}
+
+.products-column h2 {
+  background-color: yellow;
+  color: black;
+  display: inline-block;
+  padding: 5px 15px;
+  border: 3px solid black;
+  transform: rotate(-1deg); /* -1 degree, crooked/funky look from Gemini*/
+  margin-bottom: 25px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  /* creates a white box around product image */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  background-color: white;
+  border: 4px solid black;
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 6px 6px 0px black;
+  transition: transform 0.2s ease; /* Smooth movement */
+  text-decoration: none; /* removes the underline from links */
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 8px;
+  display: block; /* Removes weird gaps under images */
+}
+
+.product-card:hover {
+  transform: translate(-4px, -4px); /* Moves up and left slightly */
+  box-shadow: 10px 10px 0px black; /* Shadow gets bigger */
+}
+
+.sidebar {
+  position: sticky;
+  top: 100px;
+  align-self: start;
+}
+
+/* Tablet and below = stacked */
+@media (max-width: 1023px) {
+  .products-layout {
+    padding: 20px; /* yellow box doesn't touch the screen edges */
+    display: block; /*items stack vertically and sidebar is now on top */
+  }
+
+  .sidebar {
+    position: static;
+    width: 100%;
+    box-sizing: border-box; /*yellow box stays within the 20px padding */
+    margin-bottom: 30px;
+  }
+}
+
+/* laptop sized screens */
+@media (min-width: 1024px) {
+  .products-layout {
+    display: grid;
+    grid-template-columns: 180px 1fr 1fr 1fr;
+    gap: 30px;
+  }
+
+  .product-card {
+    padding: 15px;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 100px;
+  }
+}
+
